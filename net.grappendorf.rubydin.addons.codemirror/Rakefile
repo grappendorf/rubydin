@@ -1,0 +1,39 @@
+$: << '.'
+$: << 'lib'
+
+require 'rake'
+require 'rubydin-addons-codemirror/version'
+
+name = 'Rubydin Addons CodeMirror'
+file = 'rubydin-addons-codemirror'
+version = Rubydin::VERSION_CODEMIRROR
+
+task :default => :gem
+
+task :gem do
+	puts in_green "Create #{name} Gem"
+	shell "jruby -S gem build #{file}.gemspec"
+end
+
+task :install => :gem do
+	puts in_green "Install #{name} Gem"
+	shell "sudo jruby -S gem install #{file}-#{version}.gem"
+end
+
+task :clean do
+	puts in_green "Deleting #{name} Gem artifacts"
+	FileUtils.rm Dir.glob '*.gem'
+end
+
+task :uninstall do
+	puts in_green "Uninstalling #{name} Gem"
+	shell "sudo jruby -S gem uninstall #{file} -v #{version}"
+end
+
+def shell cmd
+	IO.popen("#{cmd} 2>&1", 'r') {|out| out.each {|line| puts "  #{line}"}}
+end
+
+def in_green txt
+	"\x1b[32m#{txt}\x1b[0m"
+end

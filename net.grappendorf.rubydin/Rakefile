@@ -1,0 +1,52 @@
+$: << '.'
+$: << 'lib'
+
+require 'rake'
+require 'rubydin/version'
+
+name = 'Rubydin'
+file = 'rubydin'
+version = Rubydin::VERSION
+
+task :default => :compile
+
+task :gem do
+	puts in_green "Create #{name} Gem"
+	shell "jruby -S gem build #{file}.gemspec"
+end
+
+task :jar do
+	puts in_green "Compiling #{name} Jar"
+	FileUtils.mkdir 'classes' if not Dir.exist? 'classes'
+	sources = Dir.glob('src/**/*.java').join ' '
+	classpath = Dir.glob('lib/java/*.jar').join File::PATH_SEPARATOR
+	shell "javac -cp src:#{classpath} -d classes -source 1.6 -target 1.6 -Xlint:unchecked #{sources}"
+	shell "jar -cfv lib/java/#{file}-#{version}.jar -C classes ."
+end
+
+task :compile => [:jar, :gem]
+
+task :install => :compile do
+	puts in_green "Install #{name} Gem"
+	shell "sudo jruby -S gem install #{file}-#{version}.gem"
+end
+
+task :clean do
+	puts in_green "Deleting #{name} Gem artifacts"
+	FileUtils.rm Dir.glob '*.gem'
+	puts in_green "Deleting #{name} Java artifacts"
+	FileUtils.rm_rf 'classes'	
+end
+
+task :uninstall do
+	puts in_green "Uninstalling #{name} Gem"
+	shell "sudo jruby -S gem uninstall #{file} -v #{version}"
+end
+
+def shell cmd
+	IO.popen("#{cmd} 2>&1", 'r') {|out| out.each {|line| puts "  #{line}"}}
+end
+
+def in_green txt
+	"\x1b[32m#{txt}\x1b[0m"
+end 
