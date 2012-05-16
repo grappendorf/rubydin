@@ -1,4 +1,4 @@
 rubydin/lib/java/rubydin-*.jar
 rubydin/rubydin-*.gem
 rubydin/classes
-
+rubydin-addons-*/*.gem
