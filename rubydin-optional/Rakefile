@@ -1,12 +1,12 @@
-$: << '.'
-$: << 'lib'
-
 require 'rake'
-require 'rubydin-optional/version'
+require 'rake/clean'
+require 'lib/rubydin-optional/version'
 
-name = 'Rubydin Optional Components'
+name = 'Rubydin Optional'
 file = 'rubydin-optional'
 version = Rubydin::VERSION_OPTIONAL
+
+CLOBBER.include '*.gem'
 
 task :default => :gem
 
@@ -18,11 +18,6 @@ end
 task :install => :gem do
 	puts in_green "Install #{name} Gem"
 	shell "sudo jruby -S gem install #{file}-#{version}.gem"
-end
-
-task :clean do
-	puts in_green "Deleting #{name} Gem artifacts"
-	FileUtils.rm Dir.glob '*.gem'
 end
 
 task :uninstall do

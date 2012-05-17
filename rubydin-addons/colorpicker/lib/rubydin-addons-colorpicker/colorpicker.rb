@@ -42,6 +42,10 @@ module Rubydin
 		
 		alias when_color_picked when_color_changed
 
+		def color= rgb
+			setColor Java::java.awt.Color.new rgb[0], rgb[1], rgb[2]
+		end
+		
 	end
 
 end

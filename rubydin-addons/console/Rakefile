@@ -1,12 +1,12 @@
-$: << '.'
-$: << 'lib'
-
 require 'rake'
-require 'rubydin-addons-console/version'
+require 'rake/clean'
+require 'lib/rubydin-addons-console/version'
 
 name = 'Rubydin Addons Console'
 file = 'rubydin-addons-console'
 version = Rubydin::VERSION_CONSOLE
+
+CLOBBER.include '*.gem'
 
 task :default => :gem
 
@@ -18,11 +18,6 @@ end
 task :install => :gem do
 	puts in_green "Install #{name} Gem"
 	shell "sudo jruby -S gem install #{file}-#{version}.gem"
-end
-
-task :clean do
-	puts in_green "Deleting #{name} Gem artifacts"
-	FileUtils.rm Dir.glob '*.gem'
 end
 
 task :uninstall do

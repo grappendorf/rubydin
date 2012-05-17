@@ -36,7 +36,7 @@ module Rubydin
 			
 		end
 		
-		def self.compile widgetset = 'widgetset', widgetset_path = 'config', output_path = 'target/VAADIN/widgetsets'
+		def self.compile widgetset = 'widgetset', widgetset_path = 'config', output_path = 'build/VAADIN/widgetsets'
 			FileUtils.mkdir_p output_path
 			$CLASSPATH << File.expand_path(widgetset_path)
 			classpath = $CLASSPATH.join File::PATH_SEPARATOR

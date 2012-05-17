@@ -1,12 +1,12 @@
-$: << '.'
-$: << 'lib'
-
 require 'rake'
-require 'rubydin-addons-codemirror/version'
+require 'rake/clean'
+require 'lib/rubydin-addons-confirmdialog/version'
 
-name = 'Rubydin Addons CodeMirror'
-file = 'rubydin-addons-codemirror'
-version = Rubydin::VERSION_CODEMIRROR
+name = 'Rubydin Addons ConfirmDialog'
+file = 'rubydin-addons-confirmdialog'
+version = Rubydin::VERSION_CONFIRMDIALOG
+
+CLOBBER.include '*.gem'
 
 task :default => :gem
 
@@ -18,11 +18,6 @@ end
 task :install => :gem do
 	puts in_green "Install #{name} Gem"
 	shell "sudo jruby -S gem install #{file}-#{version}.gem"
-end
-
-task :clean do
-	puts in_green "Deleting #{name} Gem artifacts"
-	FileUtils.rm Dir.glob '*.gem'
 end
 
 task :uninstall do

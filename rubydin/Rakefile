@@ -1,27 +1,32 @@
-$: << '.'
-$: << 'lib'
-
 require 'rake'
-require 'rubydin/version'
+require 'rake/clean'
+require 'lib/rubydin/version'
 
 name = 'Rubydin'
 file = 'rubydin'
 version = Rubydin::VERSION
 
+BUILD_DIR = 'build'
+directory BUILD_DIR
+
+CLASSES_DIR = 'build/classes'
+directory CLASSES_DIR
+
+CLOBBER.include BUILD_DIR, CLASSES_DIR, '*.gem'
+
 task :default => :compile
 
-task :gem do
+task :gem => [BUILD_DIR] do
 	puts in_green "Create #{name} Gem"
 	shell "jruby -S gem build #{file}.gemspec"
 end
 
-task :jar do
+task :jar => [BUILD_DIR, CLASSES_DIR] do
 	puts in_green "Compiling #{name} Jar"
-	FileUtils.mkdir 'classes' if not Dir.exist? 'classes'
 	sources = Dir.glob('src/**/*.java').join ' '
 	classpath = Dir.glob('lib/java/*.jar').join File::PATH_SEPARATOR
-	shell "javac -cp src:#{classpath} -d classes -source 1.6 -target 1.6 -Xlint:unchecked #{sources}"
-	shell "jar -cfv lib/java/#{file}-#{version}.jar -C classes ."
+	shell "javac -cp src:#{classpath} -d #{CLASSES_DIR} -source 1.6 -target 1.6 -Xlint:unchecked #{sources}"
+	shell "jar -cfv #{BUILD_DIR}/#{file}-#{version}.jar -C #{CLASSES_DIR} ."
 end
 
 task :compile => [:jar, :gem]
@@ -29,13 +34,6 @@ task :compile => [:jar, :gem]
 task :install => :compile do
 	puts in_green "Install #{name} Gem"
 	shell "sudo jruby -S gem install #{file}-#{version}.gem"
-end
-
-task :clean do
-	puts in_green "Deleting #{name} Gem artifacts"
-	FileUtils.rm Dir.glob '*.gem'
-	puts in_green "Deleting #{name} Java artifacts"
-	FileUtils.rm_rf 'classes'	
 end
 
 task :uninstall do
