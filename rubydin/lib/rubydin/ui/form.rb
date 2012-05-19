@@ -35,6 +35,10 @@ module Rubydin
 
 	class StandardFormFieldFactory < FormFieldFactory
 
+		def createField item, property_id, ui_context
+			create_field item, property_id, ui_context
+		end
+
 		def create_field item, property_id, ui_context
 			property = item.get_item_property property_id
 			type = property.get_type
@@ -72,38 +76,10 @@ module Rubydin
 
 	end
 
-	class ActiveRecordFormFieldFactory < FormFieldFactory
-
-		def create_field item, property_id, ui_context
-			type = item.data.column_for_attribute(property_id).type
-			field = case type
-				when :text
-					create_field_for_text property_id
-				when :string
-					create_field_for_string property_id
-			end
-		end
-
-		def create_field_for_string property_id
-			TextField.new create_caption property_id
-		end
-
-		def create_field_for_text property_id
-			# TextArea.new(create_caption property_id).tap do |f|
-				# f.columns = 40
-			# end
-			CodeMirror.new(create_caption property_id).tap do |f|
-				f.columns = 40
-			end
-		end
-
-	end
-
 	class Form < Java::com.vaadin.ui.Form
 
 		@@standard_form_field_factory = StandardFormFieldFactory.new
-		@@active_record_form_field_factory = ActiveRecordFormFieldFactory.new
-
+		
 		def initialize caption = nil
 			super()
 			set_write_through false
@@ -112,9 +88,6 @@ module Rubydin
 		end
 
 		def item_data_source= item
-			if item[0].class == ActiveRecordItem
-				set_form_field_factory @@active_record_form_field_factory
-			end
 			set_item_data_source(*item)
 		end
 

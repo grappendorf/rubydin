@@ -18,7 +18,7 @@ limitations under the License.
 
 =end
 
-require 'java/console-1.1.6.jar'
-require 'java/widget-rpc-1.1.5.jar'
-require 'rubydin-addons-console/version'
-require 'rubydin-addons-console/console'
+require 'active_record'
+require 'rubydin-optional/data/active_record_item'
+require 'rubydin-optional/data/active_record_container'
+require 'rubydin-optional/ui/active_record_form'
