@@ -1,3 +1,15 @@
 = Rubydin
 
 Write Vaadin applications in the Ruby programming language.
+
+= Licenses
+
+== Rubydin
+
+The Rubydin code is licensed under the the Apache License, Version 2.0
+You find the license at http://www.apache.org/licenses/LICENSE-2.0
+
+== Third party packages
+
+License information about all included third party packages is found in
+the README.rdoc files of the sub projects

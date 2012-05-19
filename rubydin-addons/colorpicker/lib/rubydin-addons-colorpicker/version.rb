@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	VERSION_COLORPICKER = '1.1.0'
+	VERSION_COLORPICKER = '1.1.0.1'
 
 end

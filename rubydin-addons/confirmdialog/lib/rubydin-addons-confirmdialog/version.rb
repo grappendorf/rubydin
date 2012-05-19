@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	VERSION_CONFIRMDIALOG = '1.2.0'
+	VERSION_CONFIRMDIALOG = '1.2.0.1'
 
 end

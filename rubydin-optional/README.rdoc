@@ -1,1 +1,10 @@
-= Rubydin Optional Package
+= Rubydin Optional Components
+
+This Gem contains optional Rubydin components
+
+= Licenses
+
+== Rubydin
+
+The Rubydin code is licensed under the the Apache License, Version 2.0
+You find the license at http://www.apache.org/licenses/LICENSE-2.0

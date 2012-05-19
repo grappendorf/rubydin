@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	VERSION_SERVERPUSH = '1.0.6'
+	VERSION_SERVERPUSH = '1.0.6.1'
 
 end

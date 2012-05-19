@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	VERSION_CONSOLE = '1.1.6'
+	VERSION_CONSOLE = '1.1.6.1'
 
 end
