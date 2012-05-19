@@ -22,6 +22,8 @@ module Rubydin
 
 	class Application < Java::com.vaadin.Application
 
+		@@logger = Java::java.util.logging.Logger.getLogger self.name
+
 		class TransactionStartListener
 			include Java::com.vaadin.service.ApplicationContext::TransactionListener
 
@@ -64,9 +66,17 @@ module Rubydin
 			end
 		end
 
+		def terminalError e
+			super
+			cause = e.throwable.cause
+			if cause.kind_of? Java::org.jruby.exceptions.RaiseException
+				@@logger.log Java::java.util.logging.Level::SEVERE, 'Ruby error:', cause
+			end
+		end
+
 		def init
 		end
-		
+
 		def when_transaction_start &block
 			context.addTransactionListener TransactionStartListener.new block
 		end
