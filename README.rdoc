@@ -2,6 +2,10 @@
 
 Write Vaadin applications in the Ruby programming language.
 
+Dirk Grappendorf
+www.grappendorf.net
+info@grappendorf.net
+
 = Licenses
 
 == Rubydin
