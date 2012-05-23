@@ -71,7 +71,7 @@ module Rubydin
 		THEME_NIGHT = Java::org.vaadin.codemirror2.client.ui.CodeTheme::NIGHT
 		THEME_RUBYBLUE = Java::org.vaadin.codemirror2.client.ui.CodeTheme::RUBYBLUE
 
-		def initialize caption = '', mode = MODE_TEXT, theme = THEME_DEFAULT
+		def initialize caption = nil, mode = MODE_TEXT, theme = THEME_DEFAULT
 			super caption
 			setCodeMode mode
 			setCodeTheme theme

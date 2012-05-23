@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	VERSION_CODEMIRROR = '2.2.2.1'
+	VERSION_CODEMIRROR = '2.2.4.1'
 
 end
