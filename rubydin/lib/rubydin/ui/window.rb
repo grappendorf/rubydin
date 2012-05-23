@@ -50,6 +50,10 @@ module Rubydin
 			getListeners(Java::com.vaadin.ui.Window::CloseEvent).each{|l| removeListener l}
 		end
 
+		def removeWindow confirm
+			super
+		end
+		
 	end
 
 end
