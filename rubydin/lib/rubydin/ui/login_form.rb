@@ -48,7 +48,7 @@ module Rubydin
 		class LoginListener
 
 			include Java::com.vaadin.ui.LoginForm::LoginListener
-			include AbstractComponent::ListenerWithBlock
+			include ListenerWithBlock
 
 			def on_login event
 				@block.call LoginEvent.new event

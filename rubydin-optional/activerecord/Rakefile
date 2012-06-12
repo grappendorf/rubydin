@@ -1,0 +1,36 @@
+require 'rake'
+require 'rake/clean'
+require 'lib/rubydin-optional-activerecord/version'
+
+name = 'Rubydin Optional ActiveRecord'
+file = 'rubydin-optional-activerecord'
+version = Rubydin::VERSION_ACTIVERECORD
+
+CLOBBER.include '*.gem'
+
+task :default => :build
+
+task :build => :gem
+
+task :gem do
+	puts in_green "Create #{name} Gem"
+	shell "jruby -S gem build #{file}.gemspec"
+end
+
+task :install => :gem do
+	puts in_green "Install #{name} Gem"
+	shell "sudo jruby -S gem install #{file}-#{version}.gem"
+end
+
+task :uninstall do
+	puts in_green "Uninstalling #{name} Gem"
+	shell "sudo jruby -S gem uninstall #{file}"
+end
+
+def shell cmd
+	IO.popen("#{cmd} 2>&1", 'r') {|out| out.each {|line| puts "  #{line}"}}
+end
+
+def in_green txt
+	"\x1b[32m#{txt}\x1b[0m"
+end

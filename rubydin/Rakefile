@@ -7,38 +7,38 @@ file = 'rubydin'
 version = Rubydin::VERSION
 
 BUILD_DIR = 'build'
-directory BUILD_DIR
-
 CLASSES_DIR = 'build/classes'
-directory CLASSES_DIR
 
 CLOBBER.include BUILD_DIR, CLASSES_DIR, '*.gem'
 
-task :default => :compile
+task :default => :build
 
-task :gem => [BUILD_DIR] do
+task :build => [:jar, :gem]
+
+task :gem do
+	mkdir BUILD_DIR unless Dir.exists? BUILD_DIR
 	puts in_green "Create #{name} Gem"
 	shell "jruby -S gem build #{file}.gemspec"
 end
 
-task :jar => [BUILD_DIR, CLASSES_DIR] do
+task :jar do
+	mkdir BUILD_DIR unless Dir.exists? BUILD_DIR
+	mkdir CLASSES_DIR unless Dir.exists? CLASSES_DIR
 	puts in_green "Compiling #{name} Jar"
-	sources = Dir.glob('src/**/*.java').join ' '
-	classpath = Dir.glob('lib/java/*.jar').join File::PATH_SEPARATOR
+	sources = Dir['src/**/*.java'].join ' '
+	classpath = Dir['lib/java/*.jar'].join File::PATH_SEPARATOR
 	shell "javac -cp src:#{classpath} -d #{CLASSES_DIR} -source 1.6 -target 1.6 -Xlint:unchecked #{sources}"
 	shell "jar -cfv #{BUILD_DIR}/#{file}-#{version}.jar -C #{CLASSES_DIR} ."
 end
 
-task :compile => [:jar, :gem]
-
-task :install => :compile do
+task :install => :build do
 	puts in_green "Install #{name} Gem"
 	shell "sudo jruby -S gem install #{file}-#{version}.gem"
 end
 
 task :uninstall do
 	puts in_green "Uninstalling #{name} Gem"
-	shell "sudo jruby -S gem uninstall #{file} -v #{version}"
+	shell "sudo jruby -S gem uninstall #{file}"
 end
 
 def shell cmd
@@ -47,4 +47,4 @@ end
 
 def in_green txt
 	"\x1b[32m#{txt}\x1b[0m"
-end 
+end

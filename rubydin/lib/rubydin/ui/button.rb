@@ -29,7 +29,7 @@ module Rubydin
 		class ClickListener
 
 			include Java::com.vaadin.ui.Button::ClickListener
-			include AbstractComponent::ListenerWithBlock
+			include ListenerWithBlock
 
 			def buttonClick event
 				@block.call event

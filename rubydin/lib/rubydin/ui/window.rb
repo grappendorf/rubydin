@@ -31,7 +31,7 @@ module Rubydin
 		class CloseListener
 
 			include Java::com.vaadin.ui.Window::CloseListener
-			include AbstractComponent::ListenerWithBlock
+			include ListenerWithBlock
 
 			def windowClose event
 				@block.call event

@@ -20,34 +20,40 @@ limitations under the License.
 
 module Rubydin
 
+	# This module combines functions which are common to all components.
 	module AbstractComponent
 
-		module ListenerWithBlock
-
-			def initialize block
-				@block = block
-			end
-
-		end
-
-		def size_full
+		# Completely expand the component to 100% in both directions 
+		def full_size
 			setSizeFull
 		end
 
+		# Remove any width settings.
 		def unset_width
 			setWidth nil
 		end
 
+		# Remove any height settings.
 		def unset_height
 			setHeight nil
 		end
 
-		def width width, unit
-			setWidth width, unit
+		# Specify the component width with either
+		# 	comp.width = width
+		# where _width_ is a string like '100%', or
+		# 	comp.width = width, unit
+		# where _width_ is a float an _unit_ is a constant from Units
+		def width= width_optional_unit
+			setWidth(*width_optional_unit)
 		end
 
-		def height height, unit
-			setHeight height, opts[:unit]
+		# Specify the component height with either
+		# 	comp.height = height
+		# where _height_ is a string like '100%', or
+		# 	comp.height = height, unit
+		# where _height_ is a float an _unit_ is a constant from Units
+		def height height_optional_unit
+			setHeight(*height_optional_unit)
 		end
 
 	end

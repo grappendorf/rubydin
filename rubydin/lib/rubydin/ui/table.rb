@@ -39,19 +39,6 @@ module Rubydin
 			end
 		end
 
-		class ItemClickListener
-
-			include Java::com.vaadin.event.ItemClickEvent::ItemClickListener
-
-			def initialize block
-				@block = block
-			end
-
-			def itemClick event
-				@block.call event
-			end
-		end
-
 		def visible_columns columns
 			setVisibleColumns columns.map(&:to_s)
 		end
@@ -70,24 +57,44 @@ module Rubydin
 			elsif type == Component
 				java_class = Java::com.vaadin.ui.Component.java_class
 			else
-			java_class = type.superclass.java_class
+				java_class = type.superclass.java_class
 			end
 			addContainerProperty property_id.to_s, java_class, default_value
 		end
 
-		def add_item item_id, cells
+		def add_item item_id, *cells
 			addItem cells.to_java, item_id
 		end
 
 		alias item getItem
 
+		alias editable? isEditable
+		
+		def generated_column column_id, &block
+			addGeneratedColumn column_id.to_s, BlockColumnGenerator.new(block)
+		end
+
 		def when_item_clicked &block
 			addListener ItemClickListener.new block
 		end
 
-		def generated_column column_id, &block
-			addGeneratedColumn column_id.to_s, BlockColumnGenerator.new(block)
+		def when_selection_changed &block
+			addListener ValueChangeListener.new block
 		end
+
+		def self.boolean_image_column true_image = ThemeResource.new('icons/16/check.png'), false_image = nil
+			proc do |source, item_id, column_id|
+				property = source.item(item_id).property(column_id)
+				if source.editable?
+					checkbox = CheckBox.new
+					checkbox.property_data_source = property
+					checkbox					
+				else
+					Embedded.new(property.value ? true_image : false_image)
+				end
+			end
+		end
+
 	end
 
 end

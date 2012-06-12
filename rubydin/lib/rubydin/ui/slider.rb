@@ -26,16 +26,6 @@ module Rubydin
 
 		include AbstractComponent
 
-		class ValueChangeListener
-
-			include Java::com.vaadin.data.Property::ValueChangeListener
-			include AbstractComponent::ListenerWithBlock
-
-			def valueChange event
-				@block.call event
-			end
-		end
-
 		def initialize min = 0, max = 100, caption = ''
 			super caption, min, max
 		end

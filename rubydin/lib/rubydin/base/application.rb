@@ -89,8 +89,6 @@ module Rubydin
 			addListener UserChangeListener.new block
 		end
 
-		alias get_url getURL
-
 	end
 
 end

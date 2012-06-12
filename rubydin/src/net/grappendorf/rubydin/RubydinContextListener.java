@@ -34,7 +34,7 @@ public class RubydinContextListener implements ServletContextListener
 	@Override
 	public void contextInitialized(ServletContextEvent context)
 	{
-		context.getServletContext().log("Initializing Vaarubydin Ruby Runtime!");
+		context.getServletContext().log("Initializing Rubydin Ruby Runtime");
 		long start = System.currentTimeMillis();
 
 		String rubyHome = context.getServletContext().getInitParameter("rubyHome").trim();
@@ -102,8 +102,12 @@ public class RubydinContextListener implements ServletContextListener
 		config.put("debug_wait_for_connection", debugWaitForConnection);
 		jruby.put("config", config);
 
-		final String script = "require 'rubydin'; Rubydin::init config;"
-						+ "require 'application'; require 'boot'";
+		final String script = ""
+						+ "ENV['BUNDLE_GEMFILE'] = '" + context.getServletContext().getRealPath("/Gemfile") + "'\n"
+						+ "require 'rubydin'\n"
+						+ "Rubydin::init config;\n"
+						+ "require 'boot'\n"
+						+ "require 'application'\n"; 
 		jruby.runScriptlet(script);
 		long end = System.currentTimeMillis();
 		context.getServletContext().log("Done. Took me " + (end - start) + " milli seconds");

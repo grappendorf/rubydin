@@ -1,17 +1,19 @@
-$: << File.expand_path('../lib', __FILE__)
+require File.expand_path('../lib/rubydin-addons-codemirror/version', __FILE__)
 
-require 'rubydin-addons-codemirror/version'
+Gem::Specification.new do |gem|
+	gem.name = 'rubydin-addons-codemirror'
+	gem.version = Rubydin::VERSION_CODEMIRROR
+	gem.summary = 'Rubydin Addons CodeMirror'
+	gem.description = 'Rubydin - Vaadin adapter for Ruby - Addons CodeMirror'
+	gem.homepage = 'http://www.grappendorf.net/rubydin'
+	gem.authors = ['Dirk Grappendorf']
+	gem.email = ['rubydin@grappendorf.net']
+	gem.files = Dir.glob('lib/**/*.rb') + Dir.glob('lib/**/*.jar')
+	gem.extra_rdoc_files = ['README.md'] 
+	gem.require_paths = ['lib']
+	
+	gem.add_runtime_dependency 'rubydin', '~>6.8.0.1'
 
-Gem::Specification.new do |s|
-	s.name        	= 'rubydin-addons-codemirror'
-	s.version     	= Rubydin::VERSION_CODEMIRROR
-	s.summary     	= 'Rubydin Addons CodeMirror'
-	s.description 	= 'Rubydin - Vaadin adapter for Ruby - Addons CodeMirror'
-	s.homepage		= 'http://www.grappendorf.net/rubydin'
-	s.authors     	= ['Dirk Grappendorf']
-	s.email       	= ['rubydin@grappendorf.net']
-	s.files  		= Dir.glob('lib/**/*.rb') + Dir.glob('lib/**/*.jar')
-	s.require_paths = ['lib']
-	s.add_dependency 'rubydin', '>=6.7.8.1'
+	gem.add_development_dependency 'rake', '>=0.9.2'	
 end
 

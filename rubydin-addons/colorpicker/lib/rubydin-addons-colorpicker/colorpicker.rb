@@ -29,7 +29,7 @@ module Rubydin
 		class ColorChangeListener
 
 			include Java::com.vaadin.addon.colorpicker.ColorPicker::ColorChangeListener 
-			include AbstractComponent::ListenerWithBlock
+			include ListenerWithBlock
 
 			def colorChanged event
 				@block.call event

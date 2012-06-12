@@ -1,4 +1,4 @@
 rubydin/build
 rubydin/*.gem
-rubydin-optional/*.gem
+rubydin-optional/*/*.gem
 rubydin-addons/*/*.gem

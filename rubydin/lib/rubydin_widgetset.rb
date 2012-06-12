@@ -18,7 +18,7 @@ limitations under the License.
 
 =end
 
-require 'java/vaadin-6.7.8.jar'
+require 'java/vaadin-6.8.0.jar'
 require 'java/gwt-dev-2.4.0.jar'
 require 'java/gwt-user-2.4.0.jar'
 require 'java/validation-api-1.0.0.GA.jar'

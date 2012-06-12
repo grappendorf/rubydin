@@ -1,17 +1,19 @@
-$: << File.expand_path('../lib', __FILE__)
+require File.expand_path('../lib/rubydin-addons-colorpicker/version', __FILE__)
 
-require 'rubydin-addons-colorpicker/version'
+Gem::Specification.new do |gem|
+	gem.name = 'rubydin-addons-colorpicker'
+	gem.version = Rubydin::VERSION_COLORPICKER
+	gem.summary = 'Rubydin Addons ColorPicker'
+	gem.description = 'Rubydin - Vaadin adapter for Ruby - Addons ColorPicker'
+	gem.homepage = 'http://www.grappendorf.net/rubydin'
+	gem.authors = ['Dirk Grappendorf']
+	gem.email = ['rubydin@grappendorf.net']
+	gem.files = Dir.glob('lib/**/*.rb') + Dir.glob('lib/**/*.jar')
+	gem.extra_rdoc_files = ['README.md'] 
+	gem.require_paths = ['lib']
+	
+	gem.add_runtime_dependency 'rubydin', '~>6.8.0.1'
 
-Gem::Specification.new do |s|
-	s.name        	= 'rubydin-addons-colorpicker'
-	s.version     	= Rubydin::VERSION_COLORPICKER
-	s.summary     	= 'Rubydin Addons ColorPicker'
-	s.description 	= 'Rubydin - Vaadin adapter for Ruby - Addons ColorPicker'
-	s.homepage		= 'http://www.grappendorf.net/rubydin'
-	s.authors     	= ['Dirk Grappendorf']
-	s.email       	= ['rubydin@grappendorf.net']
-	s.files  		= Dir.glob('lib/**/*.rb') + Dir.glob('lib/**/*.jar')
-	s.require_paths = ['lib']
-	s.add_dependency 'rubydin', '>=6.7.8.1'
+	gem.add_development_dependency 'rake', '>=0.9.2'	
 end
 

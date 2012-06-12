@@ -20,6 +20,7 @@ package net.grappendorf.rubydin;
 
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import org.jruby.embed.ScriptingContainer;
@@ -30,6 +31,8 @@ import com.vaadin.terminal.gwt.server.AbstractApplicationServlet;
 public class RubydinApplicationServlet extends AbstractApplicationServlet
 {
 	private static final long serialVersionUID = 2108024889491883155L;
+
+	private static final Logger logger = Logger.getLogger(RubydinApplicationServlet.class.getName());
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +48,7 @@ public class RubydinApplicationServlet extends AbstractApplicationServlet
 	{
 		String applicationClass = getInitParameter("applicationClass");
 		ScriptingContainer jruby = RubydinContextListener.getRuby();
-		log("Creating new Vaadin Application of type '" + applicationClass + "'");
+		logger.fine("Creating new Vaadin Application of type '" + applicationClass + "'");
 		String script = applicationClass + ".new";
 		return (Application) jruby.runScriptlet(script);
 	}

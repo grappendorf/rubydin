@@ -20,6 +20,7 @@ limitations under the License.
 
 require 'rubydin/ui/abstract_component'
 require 'rubydin/ui/abstract_container'
+require 'rubydin/ui/listeners'
 
 module Rubydin
 
@@ -37,7 +38,7 @@ module Rubydin
 		class ConfirmListener
 			
 			include Java::org.vaadin.dialogs.ConfirmDialog::Listener
-			include AbstractComponent::ListenerWithBlock
+			include ListenerWithBlock
 	
 			def onClose dialog
 				@block.call dialog

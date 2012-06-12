@@ -26,6 +26,10 @@ module Rubydin
 
 		include AbstractComponent
 
+		def initialize caption = nil
+			super
+		end
+		
 	end
 
 end
