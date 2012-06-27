@@ -38,8 +38,8 @@ module Rubydin
 			end
 		end
 
-		def initialize
-			super
+		def initialize caption = ''
+			super caption
 		end
 
 		def when_closed &block
