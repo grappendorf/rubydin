@@ -47,6 +47,10 @@ module Rubydin
 			setColumnExpandRatio column.to_s, ratio
 		end
 
+		def column_width column, width
+			setColumnWidth column, width
+		end
+		
 		def column_header column, header
 			setColumnHeader column.to_s, header
 		end
@@ -82,6 +86,16 @@ module Rubydin
 			addListener ValueChangeListener.new block
 		end
 
+		def each_item
+			itemIds.each do |id|
+				yield IndexedContainerItemWrapper.new(self.item id)
+			end
+		end
+		
+		def item item_id
+			ItemWrapper.new(getItem item_id)
+		end
+		
 		def self.boolean_image_column true_image = ThemeResource.new('icons/16/check.png'), false_image = nil
 			proc do |source, item_id, column_id|
 				property = source.item(item_id).property(column_id)
@@ -94,7 +108,7 @@ module Rubydin
 				end
 			end
 		end
-
+		
 	end
 
 end

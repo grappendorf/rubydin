@@ -62,4 +62,11 @@ module Rubydin
 
 	end
 
+	class ItemWrapper < Decorator
+		
+		def property property_id
+			delegate.getItemProperty property_id.to_s
+		end
+		
+	end
 end
