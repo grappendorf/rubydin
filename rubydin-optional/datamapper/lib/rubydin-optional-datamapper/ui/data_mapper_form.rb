@@ -36,13 +36,23 @@ module Rubydin
 					create_field_for_text property_id
 				when type == DataMapper::Property::Boolean
 					create_field_for_boolean property_id
+				when type == DataMapper::Property::DateTime
+					create_field_for_datetime property_id
+				when type == DataMapper::Property::Integer
+					create_field_for_integer property_id
+				when type == DataMapper::Property::Serial
+					create_field_for_string property_id
+				when type == DataMapper::Property::Discriminator
+					create_field_for_string property_id
 			end
 			create_generic_validators property, field 
 			field
 		end
 
 		def create_field_for_string property_id
-			TextField.new create_caption property_id
+			TextField.new(create_caption property_id).tap do |f|
+				f.null_representation = ''
+			end
 		end
 
 		def create_field_for_text property_id
@@ -55,6 +65,16 @@ module Rubydin
 			CheckBox.new create_caption property_id
 		end
 
+		def create_field_for_datetime property_id
+			DateField.new create_caption property_id
+		end
+
+		def create_field_for_integer property_id
+			TextField.new(create_caption property_id).tap do |f|
+				f.null_representation = ''
+			end
+		end
+		
 		def create_generic_validators property, field
 			field.required = (not property.allow_blank?)
 		end
