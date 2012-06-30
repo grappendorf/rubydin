@@ -38,3 +38,8 @@ The contained SLF4J api version is licensed under the MIT license
 You find a copy of the license at http://www.slf4j.org/license.html
 You find the SLF4J source code at http://www.slf4j.org/download.html
 You find the SLF4J project at http://http://www.slf4j.org
+
+### FilesystemWatcher
+
+The contained FileSystemwatcher is licensed under an unknwon License. Assuming Public Domain?
+You find the FileSystemwatcher project at http://paulhorman.com/filesystemwatcher/
