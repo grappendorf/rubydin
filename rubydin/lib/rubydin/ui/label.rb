@@ -34,11 +34,14 @@ module Rubydin
 		CONTENT_XML = Java::com.vaadin.ui.Label::CONTENT_XML
 		CONTENT_UIDL = Java::com.vaadin.ui.Label::CONTENT_UIDL
 
+		def initialize caption = '', type = CONTENT_TEXT
+			super
+		end
 	end
 
 	class HTMLLabel < Label
 
-		def initialize caption
+		def initialize caption = ''
 			super caption, CONTENT_XHTML
 		end
 

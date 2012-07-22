@@ -25,50 +25,72 @@ require 'java/gwt-dev-2.4.0.jar'
 require 'java/gwt-user-2.4.0.jar'
 require 'java/validation-api-1.0.0.GA.jar'
 require 'java/validation-api-1.0.0.GA-sources.jar'
-require 'ruby-debug-ide'
+require 'java/javax.servlet-api-3.0.1.jar'
+require 'java/rubydin-6.8.0.1.jar'
+require 'logging'
 require 'renum'
+
 require 'rubydin/util/filesystemwatcher'
 require 'rubydin/util/decorator'
-require 'rubydin/base/application'
-require 'rubydin/resources/external_resource'
-require 'rubydin/resources/theme_resource'
-require 'rubydin/data/data_item'
-require 'rubydin/data/validators'
-require 'rubydin/data/integer_validator'
-require 'rubydin/data/indexed_container'
-require 'rubydin/ui/listeners'
-require 'rubydin/ui/alignment'
-require 'rubydin/ui/units'
-require 'rubydin/ui/builder'
-require 'rubydin/ui/button'
-require 'rubydin/ui/check_box'
-require 'rubydin/ui/component'
-require 'rubydin/ui/date_field'
-require 'rubydin/ui/embedded'
-require 'rubydin/ui/form'
-require 'rubydin/ui/grid_layout'
-require 'rubydin/ui/horizontal_layout'
-require 'rubydin/ui/label'
-require 'rubydin/ui/login_form'
-require 'rubydin/ui/notification'
-require 'rubydin/ui/panel'
-require 'rubydin/ui/rich_text_area'
-require 'rubydin/ui/select'
-require 'rubydin/ui/slider'
-require 'rubydin/ui/table'
-require 'rubydin/ui/text_area'
-require 'rubydin/ui/text_field'
-require 'rubydin/ui/vertical_layout'
-require 'rubydin/ui/window'
+
+module Rubydin
+	autoload :Application, 'rubydin/base/application'
+	autoload :ExternalResource, 'rubydin/resources/external_resource'
+	autoload :StreamResource, 'rubydin/resources/stream_resource'
+	autoload :ThemeResource, 'rubydin/resources/theme_resource'
+	autoload :DataProperty, 'rubydin/data/data_item'
+	autoload :DataItem, 'rubydin/data/data_item'
+	autoload :ItemWrapper, 'rubydin/data/data_item'
+	autoload :Validator, 'rubydin/data/validators'
+	autoload :IntegerValidator, 'rubydin/data/integer_validator'
+	autoload :IndexedContainerItemWrapper, 'rubydin/data/indexed_container'
+	autoload :ListenerWithBlock, 'rubydin/ui/listeners'
+	autoload :ItemClickListener, 'rubydin/ui/listeners'
+	autoload :ValueChangeListener, 'rubydin/ui/listeners'
+	autoload :Alignment, 'rubydin/ui/alignment'
+	autoload :Units, 'rubydin/ui/units'
+	autoload :Builder, 'rubydin/ui/builder'
+	autoload :Button, 'rubydin/ui/button'
+	autoload :CheckBox, 'rubydin/ui/check_box'
+	autoload :Component, 'rubydin/ui/component'
+	autoload :DateField, 'rubydin/ui/date_field'
+	autoload :Embedded, 'rubydin/ui/embedded'
+	autoload :InvalidValueError, 'rubydin/ui/form'
+	autoload :FormFieldFactory, 'rubydin/ui/form'
+	autoload :StandardFormFieldFactory, 'rubydin/ui/form'
+	autoload :Form, 'rubydin/ui/form'
+	autoload :GridLayout, 'rubydin/ui/grid_layout'
+	autoload :HorizontalLayout, 'rubydin/ui/horizontal_layout'
+	autoload :Label, 'rubydin/ui/label'
+	autoload :LoginForm, 'rubydin/ui/login_form'
+	autoload :Notification, 'rubydin/ui/notification'
+	autoload :Panel, 'rubydin/ui/panel'
+	autoload :RichTextArea, 'rubydin/ui/rich_text_area'
+	autoload :Select, 'rubydin/ui/select'
+	autoload :Slider, 'rubydin/ui/slider'
+	autoload :HorizontalSpacer, 'rubydin/ui/spacer'
+	autoload :VerticalSpacer, 'rubydin/ui/spacer'
+	autoload :Table, 'rubydin/ui/table'
+	autoload :TextArea, 'rubydin/ui/text_area'
+	autoload :TextField, 'rubydin/ui/text_field'
+	autoload :VerticalLayout, 'rubydin/ui/vertical_layout'
+	autoload :Window, 'rubydin/ui/window'
+end
 
 module Rubydin
 
-	def self.init config
-		watch_files config['application_paths']
+	def self.init config = {}
+		config = Hash[config.map{|(k,v)| [k.to_s,v]}]
+		@logger = Logging.logger[Rubydin]
+		watch_files(config['application_paths'] || [])
 		start_debugger config if config['debug']
-     end
+    end
 
 	def self.watch_files paths
+		if paths == []
+			return
+		end
+		@logger.info "Watching for file changes in these directories: #{paths}"
 		watcher = FileSystemWatcher.new
 		paths.each {|path| watcher.addDirectory path, '**/*.rb'}
 		watcher.sleepTime = 1
@@ -88,6 +110,7 @@ module Rubydin
 
 	def self.start_debugger config
 		puts 'Starting Rubydin in Debug Mode'
+		require 'ruby-debug-ide'
 		STDOUT.sync = true
 		STDERR.sync = true
     	Debugger.start_server nil, config['debug_port'] || 10000

@@ -23,7 +23,7 @@ module Rubydin
 	class ThemeResource < Java::com.vaadin.terminal.ThemeResource
 
 		def initialize resource_id
-			super resource_id
+			super
 		end
 
 	end

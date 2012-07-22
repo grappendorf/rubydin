@@ -30,6 +30,8 @@ module Rubydin
 			delegate.getItemProperty property_id.to_s
 		end 
 		
+		alias property item_property
+		
 	end
 	
 end

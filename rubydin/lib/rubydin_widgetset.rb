@@ -31,7 +31,7 @@ module Rubydin
 		def self.create widgetset = 'widgetset', widgetset_path = 'config', overwrite = true
 			$CLASSPATH << File.expand_path(widgetset_path)
 			classpath = $CLASSPATH.join File::PATH_SEPARATOR
-			FileUtils.rm File.expand_path("#{widgetset}.gwt.xml", widgetset_path) 
+			FileUtils.rm_rf File.expand_path("#{widgetset}.gwt.xml", widgetset_path) 
 			shell "java -classpath #{classpath} com.vaadin.terminal.gwt.widgetsetutils.WidgetSetBuilder #{widgetset}"
 			
 		end

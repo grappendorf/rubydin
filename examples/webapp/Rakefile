@@ -1,0 +1,47 @@
+$: << 'app'
+$: << 'config'
+
+require 'rubygems'
+require 'bundler/setup'
+require 'rake'
+require 'rake/clean'
+require 'yaml'
+
+def load_yaml file_name
+	yaml = File.read file_name
+	yaml = yaml.gsub(/(?:<%=)(.+?)(?:%>)/) {eval($1)}
+	YAML::load(yaml)
+end
+
+CLOBBER.include 'build/*'
+
+desc 'Create the widgetset.gwt.xml file and compile the widgetset'
+task :widgetset do
+	require 'rubydin_widgetset'
+	require 'rubydin_addons'
+	Rubydin::Widgetset.create
+	Rubydin::Widgetset.compile
+end
+
+desc 'Create a web application package'
+task :package do
+	FileUtils.mkdir_p 'build/webapp'	
+	[
+		'app', 'config', 
+		'public/META-INF', 'public/WEB-INF', 'public/VAADIN',
+		'build/VAADIN',	'Gemfile', 'Gemfile.lock'
+	].each do |src|
+		FileUtils.cp_r src, 'build/webapp'
+	end
+	system 'cd build/webapp; zip -r ../coyoho.war *; cd ..'
+end
+
+desc 'Deploy the web application'
+task :deploy => :package do
+	jetty_home = ENV['JETTY_HOME']
+	if not jetty_home
+		raise 'No JETTY_HOME defined. Please install Jetty'
+	end
+	webapp_path = File.expand_path 'webapps/coyoho', jetty_home
+	FileUtils.cp_r 'build/webapp', webapp_path
+end

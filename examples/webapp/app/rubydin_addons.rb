@@ -1,0 +1,1 @@
+require 'rubydin-addons-serverpush'

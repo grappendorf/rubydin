@@ -23,7 +23,7 @@ module Rubydin
 	class ExternalResource < Java::com.vaadin.terminal.ExternalResource
 
 		def initialize url
-			super url
+			super
 		end
 
 	end

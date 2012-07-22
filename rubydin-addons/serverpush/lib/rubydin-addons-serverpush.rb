@@ -18,10 +18,17 @@ limitations under the License.
 
 =end
 
+require 'java'
 require 'java/serverpush-1.0.6.jar'
 require 'java/atmosphere-gwt-common-0.8.6.jar'
 require 'java/atmosphere-gwt-client-0.8.6.jar'
 require 'java/atmosphere-gwt-server-0.8.6.jar'
 require 'java/atmosphere-runtime-0.8.6.jar'
+require 'java/atmosphere-compat-tomcat-0.8.6.jar'
+require 'java/atmosphere-compat-tomcat7-0.8.6.jar'
+require 'java/atmosphere-compat-jbossweb-0.8.6.jar'
+require 'java/atmosphere-compat-weblogic-0.8.6.jar'
+require 'java/slf4j-api-1.6.4.jar'
+require 'java/slf4j-jdk14-1.6.4.jar'
 require 'rubydin-addons-serverpush/version'
 require 'rubydin-addons-serverpush/serverpush'

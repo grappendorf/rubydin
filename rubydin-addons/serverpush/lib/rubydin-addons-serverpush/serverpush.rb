@@ -20,7 +20,7 @@ limitations under the License.
 
 module Rubydin
 
-	class ServerPush < org.vaadin.addons.serverpush.ServerPush
+	class ServerPush < Java::org.vaadin.addons.serverpush.ServerPush
 
 		def initialize context_path = ''
 			super

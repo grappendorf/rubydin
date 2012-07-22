@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
 	gem.homepage = 'http://www.grappendorf.net/rubydin'
 	gem.authors = ['Dirk Grappendorf']
 	gem.email = ['rubydin@grappendorf.net']
-	gem.files = Dir.glob('lib/**/*.rb') + Dir.glob('lib/**/*.jar')
+	gem.files = Dir.glob('lib/**/*.rb') + Dir.glob('lib/**/*.jar') 
 	gem.extra_rdoc_files = ['README.md'] 
 	gem.require_paths = ['lib']
 	

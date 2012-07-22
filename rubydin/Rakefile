@@ -18,7 +18,9 @@ task :build => [:jar, :gem]
 task :gem do
 	mkdir BUILD_DIR unless Dir.exists? BUILD_DIR
 	puts in_green "Create #{name} Gem"
+	FileUtils.cp "build/rubydin-#{version}.jar", 'lib/java'
 	shell "jruby -S gem build #{file}.gemspec"
+	FileUtils.rm "lib/java/rubydin-#{version}.jar"
 end
 
 task :jar do
