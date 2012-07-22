@@ -18,6 +18,7 @@ limitations under the License.
 
 =end
 
+require 'java'
 require 'java/confirmdialog-1.2.0.jar'
 require 'rubydin-addons-confirmdialog/version'
 require 'rubydin-addons-confirmdialog/confirmdialog'

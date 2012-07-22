@@ -18,6 +18,7 @@ limitations under the License.
 
 =end
 
+require 'java'
 require 'java/wizards-for-vaadin-0.4.4.jar'
 require 'rubydin-addons-wizardsforvaadin/version'
 require 'rubydin-addons-wizardsforvaadin/wizardsforvaadin'

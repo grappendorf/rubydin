@@ -2,3 +2,4 @@ rubydin/build
 rubydin/*.gem
 rubydin-optional/*/*.gem
 rubydin-addons/*/*.gem
+rubydin/lib/rubydin-*.jar

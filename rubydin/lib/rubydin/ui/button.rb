@@ -36,8 +36,9 @@ module Rubydin
 			end
 		end
 
-		def initialize text = ''
+		def initialize text = '', icon = nil
 			super text
+			self.icon = icon if icon
 		end
 
 		def when_clicked &block

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="3.0">
+	<display-name>Rubydin Example Web Application</display-name>
+	<context-param>
+		<param-name>productionMode</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>rubyHome</param-name>
+		<param-value>/opt/jruby</param-value>
+	</context-param>
+	<context-param>
+		<param-name>libraryPaths</param-name>
+		<param-value></param-value>
+	</context-param>
+	<context-param>
+		<param-name>applicationPaths</param-name>
+		<param-value>
+			app
+			config
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>bootFile</param-name>
+		<param-value>boot</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>Atmosphere</servlet-name>
+		<servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+		<init-param>
+			<param-name>org.atmosphere.disableOnStateEvent</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.useWebSocket</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet>
+		<servlet-name>Vaadin Application</servlet-name>
+		<servlet-class>net.grappendorf.rubydin.RubydinApplicationServlet</servlet-class>
+		<init-param>
+			<param-name>applicationClass</param-name>
+			<param-value>ExampleApplication</param-value>
+		</init-param>
+		<init-param>
+			<description>Application widgetset</description>
+			<param-name>widgetset</param-name>
+			<param-value>widgetset</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Atmosphere</servlet-name>
+		<url-pattern>/server-push</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Vaadin Application</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	<listener>
+		<listener-class>net.grappendorf.rubydin.RubydinContextListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

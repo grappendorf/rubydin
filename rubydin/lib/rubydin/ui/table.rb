@@ -82,6 +82,8 @@ module Rubydin
 			addListener ItemClickListener.new block
 		end
 
+		alias when_row_clicked when_item_clicked
+		
 		def when_selection_changed &block
 			addListener ValueChangeListener.new block
 		end

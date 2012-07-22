@@ -33,11 +33,23 @@ module Rubydin
 			setWidth nil
 		end
 
+		alias undefined_width unset_width
+		
 		# Remove any height settings.
 		def unset_height
 			setHeight nil
 		end
 
+		alias undefined_height unset_height
+
+		# Remove any size settings
+		def unset_size
+			setWidth nil
+			setHeight nil
+		end
+		
+		alias undefined_size unset_size
+		
 		# Specify the component width with either
 		# 	comp.width = width
 		# where _width_ is a string like '100%', or

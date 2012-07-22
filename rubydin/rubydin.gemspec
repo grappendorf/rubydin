@@ -12,5 +12,7 @@ Gem::Specification.new do |gem|
 	gem.extra_rdoc_files = ['LICENSE.txt', 'README.md'] 
 	gem.require_paths = ['lib']
 	
-	gem.add_development_dependency 'rake', '>=0.9.2'	
+	gem.add_runtime_dependency 'logging', '~>1.7.2'
+
+	gem.add_development_dependency 'rake', '>=0.9.2'
 end

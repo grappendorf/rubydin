@@ -18,6 +18,7 @@ limitations under the License.
 
 =end
 
+require 'java'
 require 'java/codemirror2-2.2.4.jar'
 require 'rubydin-addons-codemirror/version'
 require 'rubydin-addons-codemirror/codemirror'

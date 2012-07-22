@@ -18,6 +18,7 @@ limitations under the License.
 
 =end
 
+require 'java'
 require 'java/vaadin-colorpicker-1.1.0.jar'
 require 'rubydin-addons-colorpicker/version'
 require 'rubydin-addons-colorpicker/colorpicker'

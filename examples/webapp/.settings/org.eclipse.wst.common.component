@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="rubydin-example-webapp">
+        <wb-resource deploy-path="/app" source-path="/app"/>
+        <wb-resource deploy-path="/config" source-path="/config"/>
+        <wb-resource deploy-path="/" source-path="/public"/>
+        <wb-resource deploy-path="/VAADIN" source-path="/build/VAADIN"/>
+        <wb-resource deploy-path="/Gemfile" source-path="/Gemfile"/>
+        <wb-resource deploy-path="/Gemfile.lock" source-path="/Gemfile.lock"/>
+        <property name="java-output-path" value="/rubydin-example-webapp/src/main/webapp/WEB-INF/classes"/>
+        <property name="context-root" value="rubydin-example-webapp"/>
+    </wb-module>
+</project-modules>
