@@ -18,22 +18,14 @@ limitations under the License.
 
 =end
 
-require 'rubydin/ui/abstract_component'
-
 module Rubydin
 
-	class Embedded < Java::com.vaadin.ui.Embedded
-
-		include AbstractComponent
-
-		TYPE_OBJECT = Java::com.vaadin.ui.Embedded::TYPE_OBJECT
-		TYPE_IMAGE = Java::com.vaadin.ui.Embedded::TYPE_IMAGE
-		TYPE_BROWSER = Java::com.vaadin.ui.Embedded::TYPE_BROWSER
-
-		def initialize resource = nil, caption = nil
-			super caption, resource
+	class DownloadStream < Java::com.vaadin.terminal.DownloadStream
+		
+		def initialize stream, content_type = nil, file_name = nil
+			super			
 		end
-
+		
 	end
-
+	
 end

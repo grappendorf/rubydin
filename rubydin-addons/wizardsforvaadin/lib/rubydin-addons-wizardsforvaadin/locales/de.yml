@@ -1,0 +1,9 @@
+de:
+  rubydin:
+    addons:
+      wizardsforvaadin:
+        next_button: Weiter
+        back_button: Zurück
+        finish_button: Fertigstellen
+        cancel_button: Beenden
+        step_content_to_be_implemented: Implement the content() function to provide a content for this step

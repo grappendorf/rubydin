@@ -18,20 +18,12 @@ limitations under the License.
 
 =end
 
-require 'rubydin/ui/abstract_component'
-
 module Rubydin
 
-	class Embedded < Java::com.vaadin.ui.Embedded
+	class StringLengthValidator < Java::com.vaadin.data.validator.StringLengthValidator
 
-		include AbstractComponent
-
-		TYPE_OBJECT = Java::com.vaadin.ui.Embedded::TYPE_OBJECT
-		TYPE_IMAGE = Java::com.vaadin.ui.Embedded::TYPE_IMAGE
-		TYPE_BROWSER = Java::com.vaadin.ui.Embedded::TYPE_BROWSER
-
-		def initialize resource = nil, caption = nil
-			super caption, resource
+		def initialize error_message, min_length, max_length
+			super error_message, min_length, max_length, true
 		end
 
 	end

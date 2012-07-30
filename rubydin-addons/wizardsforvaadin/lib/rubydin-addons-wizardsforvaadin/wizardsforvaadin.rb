@@ -53,6 +53,10 @@ module Rubydin
 			@step_set_changed_callbacks = []
 			@wizard_completed_callbacks = []
 			@wizard_cancelled_callbacks = []
+			next_button.caption = T('rubydin.addons.wizardsforvaadin.next_button')
+			back_button.caption = T('rubydin.addons.wizardsforvaadin.back_button')
+			finish_button.caption = T('rubydin.addons.wizardsforvaadin.finish_button')
+			cancel_button.caption = T('rubydin.addons.wizardsforvaadin.cancel_button')
 		end
 
 		alias step addStep
@@ -115,7 +119,7 @@ module Rubydin
 
 		# Create and return the GUI content for the step
 		def content
-			Label.new 'Implement the content() function to provide a content for this step'
+			Label.new T('rubydin.step_content_to_be_implemented')
 		end
 	
 		def onAdvance

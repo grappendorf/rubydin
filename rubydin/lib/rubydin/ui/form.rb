@@ -20,15 +20,16 @@ limitations under the License.
 
 module Rubydin
 
-	class InvalidValueError < StandardError
-	end
-
 	class FormFieldFactory
 
 		include Java::com.vaadin.ui.FormFieldFactory
 
-		def create_caption property_id
-			Java::com.vaadin.ui.DefaultFieldFactory::createCaptionByPropertyId property_id.to_s.gsub(/_(.)/) {|w| w[1].upcase}
+		def create_caption property_id, model_id = :_
+			begin
+				T! property_id, scope: [:domain, :attributes, model_id] 				
+			rescue
+				Java::com.vaadin.ui.DefaultFieldFactory::createCaptionByPropertyId property_id.to_s.gsub(/_(.)/) {|w| w[1].upcase}
+			end
 		end
 
 	end
@@ -63,7 +64,7 @@ module Rubydin
 		def create_field_for_integer property_id
 			caption = create_caption property_id
 			field = TextField.new caption
-			field.add_validator IntegerValidator.new caption + ' must be a number'
+			field.add_validator IntegerValidator.new T('rubydin.validator.integer.number_error', field:caption)
 			field
 		end
 
@@ -79,7 +80,7 @@ module Rubydin
 	class Form < Java::com.vaadin.ui.Form
 
 		@@standard_form_field_factory = StandardFormFieldFactory.new
-		
+
 		def initialize caption = nil
 			super()
 			set_write_through false
@@ -91,11 +92,12 @@ module Rubydin
 			set_item_data_source(*item)
 		end
 
-		def commit
+		def commit!
 			begin
-				super
-			rescue Java::com.vaadin.data.Validator::InvalidValueException => x
-				raise InvalidValueError, x.message
+				commit
+				true
+			rescue Java::com.vaadin.data.Validator::InvalidValueException
+			false
 			end
 		end
 

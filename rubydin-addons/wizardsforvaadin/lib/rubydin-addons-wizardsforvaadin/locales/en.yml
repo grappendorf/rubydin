@@ -1,0 +1,8 @@
+en:
+  rubydin:
+    addons:
+      wizardsforvaadin:
+        next_button: Next
+        back_button: Back
+        finish_button: Finish
+        cancel_button: Cancel
