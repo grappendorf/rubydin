@@ -18,22 +18,22 @@ limitations under the License.
 
 =end
 
-require 'rubydin/ui/abstract_component'
-
 module Rubydin
 
-	class Embedded < Java::com.vaadin.ui.Embedded
+	module UriHandler
 
-		include AbstractComponent
+		include Java::com.vaadin.terminal.URIHandler
+		
+		# def handleURI context, relative_uri
+			# handle_uri context, relative_uri
+		# end
+		
+	end
 
-		TYPE_OBJECT = Java::com.vaadin.ui.Embedded::TYPE_OBJECT
-		TYPE_IMAGE = Java::com.vaadin.ui.Embedded::TYPE_IMAGE
-		TYPE_BROWSER = Java::com.vaadin.ui.Embedded::TYPE_BROWSER
+	module ParameterHandler
 
-		def initialize resource = nil, caption = nil
-			super caption, resource
-		end
-
+		include Java::com.vaadin.terminal.ParameterHandler
+		
 	end
 
 end

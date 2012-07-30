@@ -55,6 +55,13 @@ module Rubydin
 			end
 		end
 
+		def initialize
+			super
+			self.username_caption = T('rubydin.login_form.username')
+			self.password_caption = T('rubydin.login_form.password')
+			self.login_button_caption = T('rubydin.login_form.login')
+		end	
+			
 		def when_logged_in &block
 			add_listener LoginListener.new block
 		end

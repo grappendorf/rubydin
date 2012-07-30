@@ -27,5 +27,11 @@ module Rubydin
 		end
 
 	end
+	
+	module StreamSource
+		
+		include Java::com.vaadin.terminal.StreamResource::StreamSource
+		
+	end
 
 end

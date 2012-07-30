@@ -35,6 +35,9 @@ module Rubydin
 
 		def onService request, response
 			Thread.current[:rubydin_session_id] = request.session.id
+			locale = request.locale.language.downcase
+			Thread.current[:rubydin_locale] = locale
+			I18n.locale = locale
 		end
 
 		def getNewApplication request

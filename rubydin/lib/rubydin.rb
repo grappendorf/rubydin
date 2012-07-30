@@ -29,6 +29,8 @@ require 'java/javax.servlet-api-3.0.1.jar'
 require 'java/rubydin-6.8.0.1.jar'
 require 'logging'
 require 'renum'
+require 'i18n'
+require 'rubydin/util/i18n'
 
 require 'rubydin/util/filesystemwatcher'
 require 'rubydin/util/decorator'
@@ -38,11 +40,16 @@ module Rubydin
 	autoload :ExternalResource, 'rubydin/resources/external_resource'
 	autoload :StreamResource, 'rubydin/resources/stream_resource'
 	autoload :ThemeResource, 'rubydin/resources/theme_resource'
+	autoload :UriHandler, 'rubydin/resources/uri_handler'
+	autoload :ParameterHandler, 'rubydin/resources/uri_handler'
+	autoload :DownloadStream, 'rubydin/resources/download_stream'
 	autoload :DataProperty, 'rubydin/data/data_item'
 	autoload :DataItem, 'rubydin/data/data_item'
 	autoload :ItemWrapper, 'rubydin/data/data_item'
 	autoload :Validator, 'rubydin/data/validators'
 	autoload :IntegerValidator, 'rubydin/data/integer_validator'
+	autoload :RegexpValidator, 'rubydin/data/regexp_validator'
+	autoload :StringLengthValidator, 'rubydin/data/string_length_validator'
 	autoload :IndexedContainerItemWrapper, 'rubydin/data/indexed_container'
 	autoload :ListenerWithBlock, 'rubydin/ui/listeners'
 	autoload :ItemClickListener, 'rubydin/ui/listeners'
@@ -76,6 +83,8 @@ module Rubydin
 	autoload :VerticalLayout, 'rubydin/ui/vertical_layout'
 	autoload :Window, 'rubydin/ui/window'
 end
+
+I18n.load_path << Dir[File.join File.dirname(__FILE__), 'rubydin/locales/*.{rb,yml}']
 
 module Rubydin
 

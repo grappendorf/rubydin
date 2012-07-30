@@ -1,8 +1,8 @@
 =begin
 
-This file is part of the Rubydin project.
+This file is part of the CoYoHo Control Your Home System.
 
-Copyright 2012 Dirk Grappendorf, www.grappendorf.net
+Copyright 2011-2012 Dirk Grappendorf, www.grappendorf.net
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,22 +18,24 @@ limitations under the License.
 
 =end
 
-require 'rubydin/ui/abstract_component'
+class Object
 
-module Rubydin
-
-	class Embedded < Java::com.vaadin.ui.Embedded
-
-		include AbstractComponent
-
-		TYPE_OBJECT = Java::com.vaadin.ui.Embedded::TYPE_OBJECT
-		TYPE_IMAGE = Java::com.vaadin.ui.Embedded::TYPE_IMAGE
-		TYPE_BROWSER = Java::com.vaadin.ui.Embedded::TYPE_BROWSER
-
-		def initialize resource = nil, caption = nil
-			super caption, resource
-		end
-
+	def t *args
+		I18n.t(*args)
 	end
 
+	alias T t	
+
+	def t! *args
+		I18n.t!(*args)
+	end
+
+	alias T! t!
+	
+	def l *args
+		I18n.l(*args)
+	end
+
+	alias L l
+	
 end

@@ -1,0 +1,18 @@
+en:
+  rubydin:
+    login_form:
+      username: Username
+      password: Password
+      login: Login
+    validator:
+      integer:
+        number_error: "%{field} must be a number" 
+      required:
+        missing: "%{field} is missing"
+      string:
+        length:
+          equals_error: Length of %{caption} bust be %{length} characters
+          min_error: Length of %{caption} bust be greater than %{length} characters
+          max_error: Length of %{caption} bust be less than %{length_max} characters
+        format:
+          pattern_error: The format of %{field} must match %{pattern}

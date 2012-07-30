@@ -1,0 +1,18 @@
+de:
+  rubydin:
+    login_form:
+      username: Benutzername
+      password: Passwort
+      login: Anmelden
+    validator:
+      integer:
+        number_error: "%{field} muss eine ganze Zahl sein" 
+      required:
+        missing: "%{field} muss ausgefüllt werden"
+      string:
+        length:
+          equals_error: "%{field} muss genau %{length} Zeichen lang sein"
+          min_error: "%{field} muss mindestens %{length} Zeichen lang sein"
+          max_error: "%{field} darf höchstens %{length} Zeichen lang sein"
+        format:
+          pattern_error: "%{field} muss dem Muster %{pattern} entsprechen"
