@@ -22,9 +22,9 @@ require 'rubydin-optional-standalone/default_application'
 
 module Rubydin
 
-	include_class 'net.grappendorf.rubydin.RubydinStandaloneApplicationServlet'
-	include_class 'javax.servlet.http.HttpServletRequest'
-	include_class 'javax.servlet.http.HttpServletResponse'
+	java_import 'net.grappendorf.rubydin.RubydinStandaloneApplicationServlet'
+	java_import 'javax.servlet.http.HttpServletRequest'
+	java_import 'javax.servlet.http.HttpServletResponse'
 
 	class ApplicationServlet < RubydinStandaloneApplicationServlet
 

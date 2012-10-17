@@ -20,9 +20,8 @@ limitations under the License.
 
 module Rubydin
 
-	# This module combines functions which are common to all layout components. 
+	# This module combines functions which are common to all layout components.
 	module AbstractLayout
-		
 
 		# Specify the component margins with either
 		# 	comp.margin = all_margins_at_once
@@ -41,7 +40,7 @@ module Rubydin
 		def expand child, ratio
 			setExpandRatio child, ratio
 		end
-		
+
 	end
 
 end

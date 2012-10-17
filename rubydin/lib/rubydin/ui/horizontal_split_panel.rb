@@ -18,15 +18,17 @@ limitations under the License.
 
 =end
 
+require 'rubydin/ui/abstract_component'
+require 'rubydin/ui/abstract_container'
+require 'rubydin/ui/abstract_layout'
+
 module Rubydin
 
-		# This module combines functions which are common to all container components.
-		module AbstractContainer
+	class HorizontalSplitPanel < Java::com.vaadin.ui.HorizontalSplitPanel
 
-		# Add a _component_ to the container
-		def add component
-			addComponent component
-		end
+		include AbstractComponent
+		include AbstractContainer
+		include AbstractLayout
 
 	end
 

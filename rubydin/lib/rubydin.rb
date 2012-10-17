@@ -68,6 +68,7 @@ module Rubydin
 	autoload :Form, 'rubydin/ui/form'
 	autoload :GridLayout, 'rubydin/ui/grid_layout'
 	autoload :HorizontalLayout, 'rubydin/ui/horizontal_layout'
+	autoload :HorizontalSplitPanel, 'rubydin/ui/horizontal_split_panel'
 	autoload :Label, 'rubydin/ui/label'
 	autoload :LoginForm, 'rubydin/ui/login_form'
 	autoload :Notification, 'rubydin/ui/notification'
@@ -81,6 +82,7 @@ module Rubydin
 	autoload :TextArea, 'rubydin/ui/text_area'
 	autoload :TextField, 'rubydin/ui/text_field'
 	autoload :VerticalLayout, 'rubydin/ui/vertical_layout'
+	autoload :VerticalSplitPanel, 'rubydin/ui/vertical_split_panel'
 	autoload :Window, 'rubydin/ui/window'
 end
 
@@ -124,5 +126,5 @@ module Rubydin
 		STDERR.sync = true
     	Debugger.start_server nil, config['debug_port'] || 10000
 	end
-	
+
 end

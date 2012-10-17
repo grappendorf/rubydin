@@ -1,12 +1,12 @@
 de:
   rubydin:
     login_form:
-      username: Benutzername
-      password: Passwort
-      login: Anmelden
+      username: "Benutzername"
+      password: "Passwort"
+      login: "Anmelden"
     validator:
       integer:
-        number_error: "%{field} muss eine ganze Zahl sein" 
+        number_error: "%{field} muss eine ganze Zahl sein"
       required:
         missing: "%{field} muss ausgefüllt werden"
       string:
