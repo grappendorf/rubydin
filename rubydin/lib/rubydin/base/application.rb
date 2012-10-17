@@ -89,6 +89,8 @@ module Rubydin
 			addListener UserChangeListener.new block
 		end
 
+		alias main_window= setMainWindow
+
 	end
 
 end

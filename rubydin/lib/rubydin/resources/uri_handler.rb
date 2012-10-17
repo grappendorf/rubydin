@@ -23,17 +23,17 @@ module Rubydin
 	module UriHandler
 
 		include Java::com.vaadin.terminal.URIHandler
-		
+
 		# def handleURI context, relative_uri
 			# handle_uri context, relative_uri
 		# end
-		
+
 	end
 
 	module ParameterHandler
 
 		include Java::com.vaadin.terminal.ParameterHandler
-		
+
 	end
 
 end

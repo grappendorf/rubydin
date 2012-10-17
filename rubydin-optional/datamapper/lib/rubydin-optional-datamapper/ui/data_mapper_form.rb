@@ -27,7 +27,7 @@ module Rubydin
 		end
 
 		def create_field item, property_id, ui_context
-			model = item.data.model			
+			model = item.data.model
 			model_id = model.name.to_sym
 			property = model.properties[property_id]
 			caption = create_caption property_id, model_id
@@ -49,7 +49,7 @@ module Rubydin
 				when type == DataMapper::Property::Discriminator
 					create_field_for_string property_id, caption
 			end
-			create_generic_validators property_id, caption, property, field 
+			create_generic_validators property_id, caption, property, field
 			field
 		end
 
@@ -69,19 +69,19 @@ module Rubydin
 							length_max = validator.expected
 						when validator.class == DataMapper::Validation::Rule::Format::Regexp
 							f.add_validator RegexpValidator.new(
-								T("rubydin.validator.string.format.pattern_error", field:caption, pattern:validator.format),
+								t("rubydin.validator.string.format.pattern_error", field:caption, pattern:validator.format),
 								validator.format.to_s, true)
 					end
 				end
 				if length_min and length_max and length_min == length_max
 					f.add_validator StringLengthValidator.new(
-						T("rubydin.validator.string.length.equals_error", field:caption, length:length_min), length_min, length_max)
+						t("rubydin.validator.string.length.equals_error", field:caption, length:length_min), length_min, length_max)
 				elsif length_min
 					f.add_validator StringLengthValidator.new(
-						T("rubydin.validator.string.length.min_error", field:caption, length:length_min), length_min, Java::java.lang.Integer::MAX_VALUE)					 
+						t("rubydin.validator.string.length.min_error", field:caption, length:length_min), length_min, Java::java.lang.Integer::MAX_VALUE)
 				elsif length_max
 					f.add_validator StringLengthValidator.new(
-						T("rubydin.validator.string.length.max_error", field:caption, length:length_max), 0, length_max)					 
+						t("rubydin.validator.string.length.max_error", field:caption, length:length_max), 0, length_max)
 				end
 				if length_max >= 80
 					f.width = 80
@@ -94,7 +94,7 @@ module Rubydin
 				f.columns = 40
 			end
 		end
-		
+
 		def create_field_for_boolean property_id, caption
 			CheckBox.new caption
 		end
@@ -108,7 +108,7 @@ module Rubydin
 				f.null_representation = ''
 			end
 		end
-		
+
 		def create_generic_validators property_id, caption, property, field
 			if not property.allow_blank?
 				field.required = true
@@ -116,5 +116,5 @@ module Rubydin
 			end
 		end
 	end
-	
+
 end

@@ -38,59 +38,59 @@ require 'rubydin-optional-standalone/application_servlet.rb'
 # production_mode: True to disable Vaadin debugging
 # widgetset: Name of the widgetset file
 # application_paths: Application directories for which to watch for file changes (auto-reload)
- 
+
 module Rubydin
 
-	include_class 'javax.servlet.http.HttpServletResponse'
-	include_class 'org.eclipse.jetty.server.Server'
-	include_class 'org.eclipse.jetty.server.nio.SelectChannelConnector'
-	include_class 'org.eclipse.jetty.server.handler.ContextHandler'
-	include_class 'org.eclipse.jetty.server.handler.ResourceHandler'
-	include_class 'org.eclipse.jetty.server.handler.HandlerList'
-	include_class 'org.eclipse.jetty.servlet.ServletContextHandler'
-	include_class 'org.eclipse.jetty.servlet.ServletHolder'
-	include_class 'org.eclipse.jetty.servlet.DefaultServlet'
-	include_class 'org.eclipse.jetty.webapp.WebAppContext'
-		
+	java_import 'javax.servlet.http.HttpServletResponse'
+	java_import 'org.eclipse.jetty.server.Server'
+	java_import 'org.eclipse.jetty.server.nio.SelectChannelConnector'
+	java_import 'org.eclipse.jetty.server.handler.ContextHandler'
+	java_import 'org.eclipse.jetty.server.handler.ResourceHandler'
+	java_import 'org.eclipse.jetty.server.handler.HandlerList'
+	java_import 'org.eclipse.jetty.servlet.ServletContextHandler'
+	java_import 'org.eclipse.jetty.servlet.ServletHolder'
+	java_import 'org.eclipse.jetty.servlet.DefaultServlet'
+	java_import 'org.eclipse.jetty.webapp.WebAppContext'
+
 	class Server
-		
+
 		class NonRootServingResourceHanlder < ResourceHandler
-			
+
 			def getResource path
-				path != '/' ? super : nil 
+				path != '/' ? super : nil
 			end
-			
+
 		end
-		
+
 		def self.start options = {}
 			logger = Logging.logger[Server]
 			logger.info 'Starting Rubydin Standalone Server'
-			
+
 			production_mode = options[:production_mode] || false
 			widgetset = options[:widgetset] || 'widgetset'
 			port = options[:port] || 8080
-			
+
 			Rubydin::init options
-			
+
 			server = Server.new
 			connector = SelectChannelConnector.new
 			connector.port = port
 			server.add_connector connector
-			
+
 			resource_handler1 = NonRootServingResourceHanlder.new
     		resource_handler1.directories_listed = true
- 	  		resource_handler1.resource_base = 'public' 
+ 	  		resource_handler1.resource_base = 'public'
 			handler1_context = ContextHandler.new
 			handler1_context.context_path = '/'
 			handler1_context.handler = resource_handler1
-	    
+
 			resource_handler2 = NonRootServingResourceHanlder.new
     		resource_handler2.directories_listed = false
     		resource_handler2.resource_base = 'build'
 			handler2_context = ContextHandler.new
 			handler2_context.context_path = '/'
 			handler2_context.handler = resource_handler2
-	
+
 			servlet_context = ServletContextHandler.new ServletContextHandler::SESSIONS
 			servlet_context.context_path = '/'
 
@@ -98,7 +98,7 @@ module Rubydin
 			atmosphere_servlet = Java::org.atmosphere.cpr.AtmosphereServlet.new
 			push_handler = Java::org.vaadin.addons.serverpush.VaadinServerPushHandler.new
 			push_handler.heartbeat = 5000
-			atmosphere_servlet.add_atmosphere_handler '/server-push', push_handler 
+			atmosphere_servlet.add_atmosphere_handler '/server-push', push_handler
 			atmosphere_servlet_holder = ServletHolder.new atmosphere_servlet
 			atmosphere_servlet_holder.set_init_parameter 'org.atmosphere.disableOnStateEvent', 'true'
 			atmosphere_servlet_holder.set_init_parameter 'org.atmosphere.cdr.asyncSupport', 'org.atmosphere.container.JettyCometSupportWithWebSocket'
@@ -106,7 +106,7 @@ module Rubydin
 			atmosphere_servlet_holder.set_init_parameter 'org.atmosphere.useNative', 'true'
 			atmosphere_servlet_holder.set_init_parameter 'org.atmosphere.cpr.CometSupport.maxInactiveActivity', '120000'
 			servlet_context.add_servlet atmosphere_servlet_holder, '/server-push'
-			
+
 			application_servlet = ApplicationServlet.new options
 			application_servlet_holder = ServletHolder.new(application_servlet)
 			application_servlet_holder.set_init_parameter 'productionMode', production_mode.to_s
@@ -116,7 +116,7 @@ module Rubydin
 
 			handlers = HandlerList.new
 			handlers.handlers = [handler1_context, handler2_context, servlet_context]
-			server.handler = handlers		
+			server.handler = handlers
 			server.start
 		end
 
