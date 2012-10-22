@@ -19,17 +19,18 @@ limitations under the License.
 =end
 
 require 'rubydin/ui/abstract_component'
+require 'rubydin/ui/listeners'
 
 module Rubydin
 
-	class Button < Java::com.vaadin.ui.Button
+	class Button < com.vaadin.ui.Button
 
 		include AbstractComponent
 
 		class ClickListener
 
-			include Java::com.vaadin.ui.Button::ClickListener
-			include ListenerWithBlock
+			include com.vaadin.ui.Button::ClickListener
+			include Rubydin::ListenerWithBlock
 
 			def buttonClick event
 				@block.call event
@@ -42,7 +43,7 @@ module Rubydin
 		end
 
 		def when_clicked &block
-			addListener ClickListener.new block
+			self.addListener ClickListener.new block
 		end
 
 	end

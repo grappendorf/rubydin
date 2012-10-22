@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	import Java::com.vaadin.data.Validator
+	import com.vaadin.data.Validator
 
 end

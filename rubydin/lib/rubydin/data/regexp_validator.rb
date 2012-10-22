@@ -20,7 +20,7 @@ limitations under the License.
 
 module Rubydin
 
-	class RegexpValidator < Java::com.vaadin.data.validator.RegexpValidator
+	class RegexpValidator < com.vaadin.data.validator.RegexpValidator
 
 		def initialize error_message, regexp, complete
 			super regexp, complete, error_message

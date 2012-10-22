@@ -6,6 +6,8 @@ name = 'Rubydin Optional DependencyInjection'
 file = 'rubydin-optional-di'
 version = Rubydin::VERSION_DI
 
+SUDO = (ENV['sudo'] =~ /(true|t|yes|y|1)$/i) && 'sudo' || ''
+
 CLOBBER.include '*.gem'
 
 task :default => :build
@@ -19,12 +21,12 @@ end
 
 task :install => :gem do
 	puts in_green "Install #{name} Gem"
-	shell "sudo jruby -S gem install #{file}-#{version}.gem"
+	shell "${SUDO} jruby -S gem install #{file}-#{version}.gem"
 end
 
 task :uninstall do
 	puts in_green "Uninstalling #{name} Gem"
-	shell "sudo jruby -S gem uninstall #{file}"
+	shell "${SUDO} jruby -S gem uninstall #{file}"
 end
 
 def shell cmd

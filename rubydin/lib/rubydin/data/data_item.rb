@@ -20,9 +20,10 @@ limitations under the License.
 
 module Rubydin
 
-	class DataProperty < Java::com.vaadin.data.util.AbstractProperty
+	class DataProperty < com.vaadin.data.util.AbstractProperty
 
 		def initialize data, property
+			#noinspection RubyArgCount
 			super()
 			@data = data
 			@getter = @data.method(property)
@@ -49,11 +50,12 @@ module Rubydin
 
 	end
 
-	class DataItem < Java::com.vaadin.data.util.PropertysetItem
+	class DataItem < com.vaadin.data.util.PropertysetItem
 
 		attr_reader :data
 
 		def initialize data
+			#noinspection RubyArgCount
 			super()
 			@data = data
 			properties = data.methods.keep_if {|m| m.to_s =~ /^\w.*/ and data.methods.include?((m.to_s + '=').to_sym)}
@@ -63,10 +65,10 @@ module Rubydin
 	end
 
 	class ItemWrapper < Decorator
-		
+
 		def property property_id
 			delegate.getItemProperty property_id.to_s
 		end
-		
+
 	end
 end

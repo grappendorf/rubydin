@@ -30,7 +30,7 @@ module Rubydin
 
 	class ItemClickListener
 
-		include Java::com.vaadin.event.ItemClickEvent::ItemClickListener
+		include com.vaadin.event.ItemClickEvent::ItemClickListener
 		include ListenerWithBlock
 
 		def itemClick event
@@ -40,7 +40,7 @@ module Rubydin
 
 	class ValueChangeListener
 
-		include Java::com.vaadin.data.Property::ValueChangeListener
+		include com.vaadin.data.Property::ValueChangeListener
 		include ListenerWithBlock
 
 		def valueChange event

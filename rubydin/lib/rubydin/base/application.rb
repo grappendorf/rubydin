@@ -20,12 +20,12 @@ limitations under the License.
 
 module Rubydin
 
-	class Application < Java::com.vaadin.Application
+	class Application < com.vaadin.Application
 
-		@@logger = Java::java.util.logging.Logger.getLogger self.name
+		@@logger = java.util.logging.Logger.getLogger self.name
 
 		class TransactionStartListener
-			include Java::com.vaadin.service.ApplicationContext::TransactionListener
+			include com.vaadin.service.ApplicationContext::TransactionListener
 
 			def initialize block
 				@block = block
@@ -40,7 +40,7 @@ module Rubydin
 		end
 
 		class TransactionEndListener
-			include Java::com.vaadin.service.ApplicationContext::TransactionListener
+			include com.vaadin.service.ApplicationContext::TransactionListener
 
 			def initialize block
 				@block = block
@@ -55,7 +55,7 @@ module Rubydin
 		end
 
 		class UserChangeListener
-			include Java::com.vaadin.Application::UserChangeListener
+			include com.vaadin.Application::UserChangeListener
 
 			def initialize block
 				@block = block
@@ -68,9 +68,10 @@ module Rubydin
 
 		def terminalError e
 			super
+			#noinspection RubyResolve
 			cause = e.throwable.cause
-			if cause.kind_of? Java::org.jruby.exceptions.RaiseException
-				@@logger.log Java::java.util.logging.Level::SEVERE, 'Ruby error:', cause
+			if cause.kind_of? org.jruby.exceptions.RaiseException
+				@@logger.log java.util.logging.Level::SEVERE, 'Ruby error:', cause
 			end
 		end
 
@@ -78,18 +79,16 @@ module Rubydin
 		end
 
 		def when_transaction_start &block
-			context.addTransactionListener TransactionStartListener.new block
+			self.context.addTransactionListener TransactionStartListener.new block
 		end
 
 		def when_transaction_end &block
-			context.addTransactionListener TransactionEndListener.new block
+			self.context.addTransactionListener TransactionEndListener.new block
 		end
 
 		def when_user_changed &block
-			addListener UserChangeListener.new block
+			self.addListener UserChangeListener.new block
 		end
-
-		alias main_window= setMainWindow
 
 	end
 

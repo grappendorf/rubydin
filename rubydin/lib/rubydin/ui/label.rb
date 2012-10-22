@@ -22,17 +22,17 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class Label < Java::com.vaadin.ui.Label
+	class Label < com.vaadin.ui.Label
 
 		include AbstractComponent
 
-		CONTENT_DEFAULT = Java::com.vaadin.ui.Label::CONTENT_DEFAULT
-		CONTENT_PREFORMATTED = Java::com.vaadin.ui.Label::CONTENT_PREFORMATTED
-		CONTENT_RAW = Java::com.vaadin.ui.Label::CONTENT_RAW
-		CONTENT_TEXT = Java::com.vaadin.ui.Label::CONTENT_TEXT
-		CONTENT_XHTML = Java::com.vaadin.ui.Label::CONTENT_XHTML
-		CONTENT_XML = Java::com.vaadin.ui.Label::CONTENT_XML
-		CONTENT_UIDL = Java::com.vaadin.ui.Label::CONTENT_UIDL
+		CONTENT_DEFAULT = com.vaadin.ui.Label::CONTENT_DEFAULT
+		CONTENT_PREFORMATTED = com.vaadin.ui.Label::CONTENT_PREFORMATTED
+		CONTENT_RAW = com.vaadin.ui.Label::CONTENT_RAW
+		CONTENT_TEXT = com.vaadin.ui.Label::CONTENT_TEXT
+		CONTENT_XHTML = com.vaadin.ui.Label::CONTENT_XHTML
+		CONTENT_XML = com.vaadin.ui.Label::CONTENT_XML
+		CONTENT_UIDL = com.vaadin.ui.Label::CONTENT_UIDL
 
 		def initialize caption = '', type = CONTENT_TEXT
 			super

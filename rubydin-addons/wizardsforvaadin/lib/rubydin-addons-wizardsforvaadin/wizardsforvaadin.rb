@@ -23,29 +23,29 @@ require 'rubydin/ui/abstract_component'
 module Rubydin
 
 	module RubydinJava
-		
-		java_import	Java::org.vaadin.teemu.wizards.Wizard
-		
+
+		java_import	org.vaadin.teemu.wizards.Wizard
+
 		class Wizard
 			field_accessor :currentStep
 		end
 	end
-	
+
 	# Enhancements:
-	# 
+	#
 	# The 'Back', 'Next' and 'Finish' buttons are now enabled or disabled whenever the
 	# possibility of the current step to go to the next/previous step or finish the wizard
 	# changes. There are three new methods in a step: can_next(), can_back() and can_finish()
 	# with which a step communicates it's ability to go next, back or finish the wizard.
 	# At any time you can call update() on the wizard, to update the enable state of the
 	# buttons whenever a steps ability to proceed has changed.
-	# As a last resort, there remains the original option to return fals in the on_next() 
+	# As a last resort, there remains the original option to return fals in the on_next()
 	# and on_back() methods to prevent the wizard from proceeding.
 	class Wizard < RubydinJava::Wizard
 
 		include AbstractComponent
-		include Java::org.vaadin.teemu.wizards.event.WizardProgressListener
-		
+		include org.vaadin.teemu.wizards.event.WizardProgressListener
+
 		def initialize
 			super
 			add_listener self
@@ -65,7 +65,7 @@ module Rubydin
 			super
 			update
 		end
-		
+
 		def when_active_step_chanegd &block
 			@active_step_changed_callbacks << block
 		end
@@ -97,7 +97,7 @@ module Rubydin
 		def wizardCancelled event
 			@wizard_cancelled_callbacks.each {|c| c.call event}
 		end
-		
+
 		def update
 			can_next = (currentStep.can_next and not isLastStep(currentStep.to_java))
 			can_back = (currentStep.can_back and not isFirstStep(currentStep.to_java))
@@ -110,7 +110,7 @@ module Rubydin
 
 	class WizardStep
 
-		include Java::org.vaadin.teemu.wizards.WizardStep
+		include org.vaadin.teemu.wizards.WizardStep
 
 		# Return a caption string for the step
 		def caption
@@ -121,7 +121,7 @@ module Rubydin
 		def content
 			Label.new T('rubydin.step_content_to_be_implemented')
 		end
-	
+
 		def onAdvance
 			on_next
 		end
@@ -131,28 +131,28 @@ module Rubydin
 		def on_next
 			true
 		end
-		
+
 		# Called when the wizard proceeds to the previous step
 		# Return true if we can proceed or false to prevent the wizard from going on
 		def on_back
 			true
 		end
 
-		# Overwrite this method to specify whether we can go to the next step or not 
+		# Overwrite this method to specify whether we can go to the next step or not
 		def can_next
 			true
 		end
 
-		# Overwrite this method to specify whether we can go to the previous step or not 
+		# Overwrite this method to specify whether we can go to the previous step or not
 		def can_back
 			true
 		end
-		
-		# Overwrite this method to specify whether we can finish the wizard 
+
+		# Overwrite this method to specify whether we can finish the wizard
 		def can_finish
 			false
 		end
-		
+
 	end
 
 end
