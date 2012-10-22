@@ -24,7 +24,7 @@ require 'rubydin/ui/abstract_layout'
 
 module Rubydin
 
-	class GridLayout < Java::com.vaadin.ui.GridLayout
+	class GridLayout < com.vaadin.ui.GridLayout
 
 		include AbstractComponent
 		include AbstractContainer
@@ -35,16 +35,16 @@ module Rubydin
 		end
 
 		def add_at component, column, row, column2 = nil, row2 = nil
-			addComponent component, column, row
+			self.addComponent component, column, row, column2, row2
 		end
-		
+
 		def add_from_to component, column1, row1, column2, row2
-			addComponent component, column1, row1, column2, row2
+			self.addComponent component, column1, row1, column2, row2
 		end
-		
+
 		alias expand_column setColumnExpandRatio
-		
-		alias expand_row setRowExpandRatio		
+
+		alias expand_row setRowExpandRatio
 
 	end
 

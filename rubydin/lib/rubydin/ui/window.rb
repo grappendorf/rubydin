@@ -23,14 +23,14 @@ require 'rubydin/ui/abstract_container'
 
 module Rubydin
 
-	class Window < Java::com.vaadin.ui.Window
+	class Window < com.vaadin.ui.Window
 
 		include AbstractComponent
 		include AbstractContainer
 
 		class CloseListener
 
-			include Java::com.vaadin.ui.Window::CloseListener
+			include com.vaadin.ui.Window::CloseListener
 			include ListenerWithBlock
 
 			def windowClose event
@@ -43,17 +43,17 @@ module Rubydin
 		end
 
 		def when_closed &block
-			addListener CloseListener.new block
+			self.addListener CloseListener.new block
 		end
 
 		def when_closed_do_nothing
-			getListeners(Java::com.vaadin.ui.Window::CloseEvent).each{|l| removeListener l}
+			getListeners(com.vaadin.ui.Window::CloseEvent).each{|l| removeListener l}
 		end
 
 		def removeWindow confirm
 			super
 		end
-		
+
 	end
 
 end

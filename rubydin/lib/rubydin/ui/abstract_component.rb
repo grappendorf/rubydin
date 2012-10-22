@@ -23,7 +23,7 @@ module Rubydin
 	# This module combines functions which are common to all components.
 	module AbstractComponent
 
-		# Completely expand the component to 100% in both directions 
+		# Completely expand the component to 100% in both directions
 		def full_size
 			setSizeFull
 		end
@@ -34,7 +34,7 @@ module Rubydin
 		end
 
 		alias undefined_width unset_width
-		
+
 		# Remove any height settings.
 		def unset_height
 			setHeight nil
@@ -47,9 +47,9 @@ module Rubydin
 			setWidth nil
 			setHeight nil
 		end
-		
+
 		alias undefined_size unset_size
-		
+
 		# Specify the component width with either
 		# 	comp.width = width
 		# where _width_ is a string like '100%', or

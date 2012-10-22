@@ -22,7 +22,7 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class Select < Java::com.vaadin.ui.Select
+	class Select < com.vaadin.ui.Select
 
 		include AbstractComponent
 

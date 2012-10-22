@@ -20,12 +20,12 @@ limitations under the License.
 
 module Rubydin
 
-	class DownloadStream < Java::com.vaadin.terminal.DownloadStream
-		
+	class DownloadStream < com.vaadin.terminal.DownloadStream
+
 		def initialize stream, content_type = nil, file_name = nil
-			super			
+			super
 		end
-		
+
 	end
-	
+
 end

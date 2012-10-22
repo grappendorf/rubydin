@@ -22,21 +22,21 @@ module Rubydin
 
 	module Notification
 
-		TYPE_HUMANIZED_MESSAGE = Java::com.vaadin.ui.Window::Notification::TYPE_HUMANIZED_MESSAGE
-		TYPE_WARNING_MESSAGE = Java::com.vaadin.ui.Window::Notification::TYPE_WARNING_MESSAGE
-		TYPE_ERROR_MESSAGE = Java::com.vaadin.ui.Window::Notification::TYPE_ERROR_MESSAGE
-		TYPE_TRAY_NOTIFICATION = Java::com.vaadin.ui.Window::Notification::TYPE_TRAY_NOTIFICATION
+		TYPE_HUMANIZED_MESSAGE = com.vaadin.ui.Window::Notification::TYPE_HUMANIZED_MESSAGE
+		TYPE_WARNING_MESSAGE = com.vaadin.ui.Window::Notification::TYPE_WARNING_MESSAGE
+		TYPE_ERROR_MESSAGE = com.vaadin.ui.Window::Notification::TYPE_ERROR_MESSAGE
+		TYPE_TRAY_NOTIFICATION = com.vaadin.ui.Window::Notification::TYPE_TRAY_NOTIFICATION
 
-		POSITION_CENTERED = Java::com.vaadin.ui.Window::Notification::POSITION_CENTERED
-		POSITION_CENTERED_TOP = Java::com.vaadin.ui.Window::Notification::POSITION_CENTERED_TOP
-		POSITION_CENTERED_BOTTOM = Java::com.vaadin.ui.Window::Notification::POSITION_CENTERED_BOTTOM
-		POSITION_TOP_LEFT = Java::com.vaadin.ui.Window::Notification::POSITION_TOP_LEFT
-		POSITION_TOP_RIGHT = Java::com.vaadin.ui.Window::Notification::POSITION_TOP_RIGHT
-		POSITION_BOTTOM_LEFT = Java::com.vaadin.ui.Window::Notification::POSITION_BOTTOM_LEFT
-		POSITION_BOTTOM_RIGHT = Java::com.vaadin.ui.Window::Notification::POSITION_BOTTOM_RIGHT
+		POSITION_CENTERED = com.vaadin.ui.Window::Notification::POSITION_CENTERED
+		POSITION_CENTERED_TOP = com.vaadin.ui.Window::Notification::POSITION_CENTERED_TOP
+		POSITION_CENTERED_BOTTOM = com.vaadin.ui.Window::Notification::POSITION_CENTERED_BOTTOM
+		POSITION_TOP_LEFT = com.vaadin.ui.Window::Notification::POSITION_TOP_LEFT
+		POSITION_TOP_RIGHT = com.vaadin.ui.Window::Notification::POSITION_TOP_RIGHT
+		POSITION_BOTTOM_LEFT = com.vaadin.ui.Window::Notification::POSITION_BOTTOM_LEFT
+		POSITION_BOTTOM_RIGHT = com.vaadin.ui.Window::Notification::POSITION_BOTTOM_RIGHT
 
-		DELAY_FOREVER = Java::com.vaadin.ui.Window::Notification::DELAY_FOREVER
-		DELAY_NONE = Java::com.vaadin.ui.Window::Notification::DELAY_NONE
+		DELAY_FOREVER = com.vaadin.ui.Window::Notification::DELAY_FOREVER
+		DELAY_NONE = com.vaadin.ui.Window::Notification::DELAY_NONE
 
 	end
 

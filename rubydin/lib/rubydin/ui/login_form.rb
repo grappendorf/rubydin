@@ -19,10 +19,11 @@ limitations under the License.
 =end
 
 require 'rubydin/ui/abstract_component'
+require 'rubydin/ui/listeners'
 
 module Rubydin
 
-	class LoginForm < Java::com.vaadin.ui.LoginForm
+	class LoginForm < com.vaadin.ui.LoginForm
 
 		include AbstractComponent
 
@@ -47,10 +48,10 @@ module Rubydin
 
 		class LoginListener
 
-			include Java::com.vaadin.ui.LoginForm::LoginListener
-			include ListenerWithBlock
+			include com.vaadin.ui.LoginForm::LoginListener
+			include Rubydin::ListenerWithBlock
 
-			def on_login event
+			def onLogin event
 				@block.call LoginEvent.new event
 			end
 		end
@@ -60,10 +61,10 @@ module Rubydin
 			self.username_caption = T('rubydin.login_form.username')
 			self.password_caption = T('rubydin.login_form.password')
 			self.login_button_caption = T('rubydin.login_form.login')
-		end	
-			
+		end
+
 		def when_logged_in &block
-			add_listener LoginListener.new block
+			self.add_listener LoginListener.new block
 		end
 
 	end

@@ -22,14 +22,14 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class CheckBox < Java::com.vaadin.ui.CheckBox
+	class CheckBox < com.vaadin.ui.CheckBox
 
 		include AbstractComponent
 
 		def initialize caption = nil
 			super
 		end
-		
+
 	end
 
 end
