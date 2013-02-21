@@ -22,7 +22,7 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class TextField < Java::com.vaadin.ui.TextField
+	class TextField < com.vaadin.ui.TextField
 
 		include AbstractComponent
 

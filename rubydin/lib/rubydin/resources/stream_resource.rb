@@ -20,18 +20,18 @@ limitations under the License.
 
 module Rubydin
 
-	class StreamResource < Java::com.vaadin.terminal.StreamResource
+	class StreamResource < com.vaadin.terminal.StreamResource
 
 		def initialize stream_source, filename, application
 			super
 		end
 
 	end
-	
+
 	module StreamSource
-		
-		include Java::com.vaadin.terminal.StreamResource::StreamSource
-		
+
+		include com.vaadin.terminal.StreamResource::StreamSource
+
 	end
 
 end

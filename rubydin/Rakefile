@@ -1,10 +1,10 @@
 require 'rake'
 require 'rake/clean'
-require 'lib/rubydin/version'
+require 'rubygems'
+require 'rubygems/gem_runner'
+require 'geminabox_client'
 
-name = 'Rubydin'
-file = 'rubydin'
-version = Rubydin::VERSION
+spec = eval(File.read(Dir['*.gemspec'][0]))
 
 BUILD_DIR = 'build'
 CLASSES_DIR = 'build/classes'
@@ -17,30 +17,35 @@ task :build => [:jar, :gem]
 
 task :gem do
 	mkdir BUILD_DIR unless Dir.exists? BUILD_DIR
-	puts in_green "Create #{name} Gem"
-	FileUtils.cp "build/rubydin-#{version}.jar", 'lib/java'
-	shell "jruby -S gem build #{file}.gemspec"
-	FileUtils.rm "lib/java/rubydin-#{version}.jar"
+	puts in_green "Create #{spec.summary} Gem"
+	FileUtils.cp "build/rubydin-#{spec.version}.jar", 'lib/java'
+	Gem::GemRunner.new.run ['build', "#{spec.name}.gemspec"]
+	FileUtils.rm "lib/java/rubydin-#{spec.version}.jar"
 end
 
 task :jar do
 	mkdir BUILD_DIR unless Dir.exists? BUILD_DIR
 	mkdir CLASSES_DIR unless Dir.exists? CLASSES_DIR
-	puts in_green "Compiling #{name} Jar"
+	puts in_green "Compiling #{spec.summary} Jar"
 	sources = Dir['src/**/*.java'].join ' '
 	classpath = Dir['lib/java/*.jar'].join File::PATH_SEPARATOR
 	shell "javac -cp src:#{classpath} -d #{CLASSES_DIR} -source 1.6 -target 1.6 -Xlint:unchecked #{sources}"
-	shell "jar -cfv #{BUILD_DIR}/#{file}-#{version}.jar -C #{CLASSES_DIR} ."
+	shell "jar -cfv #{BUILD_DIR}/#{spec.name}-#{spec.version}.jar -C #{CLASSES_DIR} ."
 end
 
 task :install => :build do
-	puts in_green "Install #{name} Gem"
-	shell "sudo jruby -S gem install #{file}-#{version}.gem"
+	puts in_green "Install #{spec.summary} Gem"
+	Gem::GemRunner.new.run ['install', "#{spec.name}-#{spec.version}.gem", '--local']
 end
 
 task :uninstall do
-	puts in_green "Uninstalling #{name} Gem"
-	shell "sudo jruby -S gem uninstall #{file}"
+	puts in_green "Uninstalling #{spec.summary} Gem"
+	Gem::GemRunner.new.run ['uninstall', "#{spec.name}"]
+end
+
+task :release => :build do
+	puts in_green "Uploading #{spec.summary} Gem to Local Repository"
+	GeminaboxClient.new(ENV['GEM_REPOSITORY']).push "#{spec.name}-#{spec.version}.gem"
 end
 
 def shell cmd

@@ -18,7 +18,6 @@ limitations under the License.
 
 =end
 
-require 'java'
 require 'java/serverpush-1.0.6.jar'
 require 'java/atmosphere-gwt-common-0.8.6.jar'
 require 'java/atmosphere-gwt-client-0.8.6.jar'

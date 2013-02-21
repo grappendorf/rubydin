@@ -20,7 +20,7 @@ limitations under the License.
 
 module Rubydin
 
-	class IntegerValidator < Java::com.vaadin.data.validator.AbstractStringValidator
+	class IntegerValidator < com.vaadin.data.validator.AbstractStringValidator
 
 		def initialize error_message
 			super

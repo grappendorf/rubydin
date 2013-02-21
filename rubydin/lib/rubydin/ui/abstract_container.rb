@@ -20,14 +20,21 @@ limitations under the License.
 
 module Rubydin
 
-		# This module combines functions which are common to all container components.
-		module AbstractContainer
+	# This module combines functions which are common to all container components.
+	module AbstractContainer
 
 		# Add a _component_ to the container
 		def add component
 			addComponent component
 		end
 
-	end
+		def caption= caption
+			setCaption caption
+		end
 
+		def remove_all_components
+			removeAllComponents
+		end
+
+	end
 end

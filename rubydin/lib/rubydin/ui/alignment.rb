@@ -22,15 +22,15 @@ module Rubydin
 
 	module Alignment
 
-		TOP_RIGHT = Java::com.vaadin.ui.Alignment::TOP_RIGHT
-		TOP_LEFT = Java::com.vaadin.ui.Alignment::TOP_LEFT
-		TOP_CENTER = Java::com.vaadin.ui.Alignment::TOP_CENTER
-		MIDDLE_RIGHT = Java::com.vaadin.ui.Alignment::MIDDLE_RIGHT
-		MIDDLE_LEFT = Java::com.vaadin.ui.Alignment::MIDDLE_LEFT
-		MIDDLE_CENTER = Java::com.vaadin.ui.Alignment::MIDDLE_CENTER
-		BOTTOM_RIGHT = Java::com.vaadin.ui.Alignment::BOTTOM_RIGHT
-		BOTTOM_LEFT = Java::com.vaadin.ui.Alignment::BOTTOM_LEFT
-		BOTTOM_CENTER = Java::com.vaadin.ui.Alignment::BOTTOM_CENTER
+		TOP_RIGHT = com.vaadin.ui.Alignment::TOP_RIGHT
+		TOP_LEFT = com.vaadin.ui.Alignment::TOP_LEFT
+		TOP_CENTER = com.vaadin.ui.Alignment::TOP_CENTER
+		MIDDLE_RIGHT = com.vaadin.ui.Alignment::MIDDLE_RIGHT
+		MIDDLE_LEFT = com.vaadin.ui.Alignment::MIDDLE_LEFT
+		MIDDLE_CENTER = com.vaadin.ui.Alignment::MIDDLE_CENTER
+		BOTTOM_RIGHT = com.vaadin.ui.Alignment::BOTTOM_RIGHT
+		BOTTOM_LEFT = com.vaadin.ui.Alignment::BOTTOM_LEFT
+		BOTTOM_CENTER = com.vaadin.ui.Alignment::BOTTOM_CENTER
 
 	end
 

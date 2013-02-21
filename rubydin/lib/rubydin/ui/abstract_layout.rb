@@ -41,6 +41,9 @@ module Rubydin
 			setExpandRatio child, ratio
 		end
 
+		def spacing= enabled
+			setSpacing enabled
+		end
 	end
 
 end

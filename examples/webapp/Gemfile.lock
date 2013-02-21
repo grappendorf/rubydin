@@ -1,19 +1,21 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    i18n (0.6.1)
     little-plugger (1.1.3)
     logging (1.7.2)
       little-plugger (>= 1.1.3)
-    rake (0.9.2.2)
-    rubydin (6.8.0.1)
+    rake (10.0.3)
+    rubydin (6.8.6.1)
+      i18n (~> 0.6.0)
       logging (~> 1.7.2)
     rubydin-addons-serverpush (1.0.6.1)
-      rubydin (~> 6.8.0.1)
+      rubydin (~> 6.8.6.1)
 
 PLATFORMS
   java
 
 DEPENDENCIES
   rake (>= 0.9.2.2)
-  rubydin (~> 6.8.0.1)
+  rubydin (~> 6.8.6.1)
   rubydin-addons-serverpush (~> 1.0.6.1)

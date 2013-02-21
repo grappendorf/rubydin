@@ -22,7 +22,7 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class RichTextArea < Java::com.vaadin.ui.RichTextArea
+	class RichTextArea < com.vaadin.ui.RichTextArea
 
 		include AbstractComponent
 

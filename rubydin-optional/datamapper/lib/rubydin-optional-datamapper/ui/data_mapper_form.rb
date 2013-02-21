@@ -45,9 +45,9 @@ module Rubydin
 				when type == DataMapper::Property::Integer
 					create_field_for_integer property_id, caption
 				when type == DataMapper::Property::Serial
-					create_field_for_string property_id, caption
+					create_field_for_string property_id, caption, validators
 				when type == DataMapper::Property::Discriminator
-					create_field_for_string property_id, caption
+					create_field_for_string property_id, caption, validators
 			end
 			create_generic_validators property_id, caption, property, field
 			field

@@ -22,13 +22,13 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class Embedded < Java::com.vaadin.ui.Embedded
+	class Embedded < com.vaadin.ui.Embedded
 
 		include AbstractComponent
 
-		TYPE_OBJECT = Java::com.vaadin.ui.Embedded::TYPE_OBJECT
-		TYPE_IMAGE = Java::com.vaadin.ui.Embedded::TYPE_IMAGE
-		TYPE_BROWSER = Java::com.vaadin.ui.Embedded::TYPE_BROWSER
+		TYPE_OBJECT = com.vaadin.ui.Embedded::TYPE_OBJECT
+		TYPE_IMAGE = com.vaadin.ui.Embedded::TYPE_IMAGE
+		TYPE_BROWSER = com.vaadin.ui.Embedded::TYPE_BROWSER
 
 		def initialize resource = nil, caption = nil
 			super caption, resource

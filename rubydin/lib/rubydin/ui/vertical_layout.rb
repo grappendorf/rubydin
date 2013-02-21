@@ -24,7 +24,7 @@ require 'rubydin/ui/abstract_layout'
 
 module Rubydin
 
-	class VerticalLayout < Java::com.vaadin.ui.VerticalLayout
+	class VerticalLayout < com.vaadin.ui.VerticalLayout
 
 		include AbstractComponent
 		include AbstractContainer

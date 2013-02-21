@@ -18,8 +18,6 @@ limitations under the License.
 
 =end
 
-require 'java'
-
 java_import 'java.lang.management.ManagementFactory'
 java_import 'org.mortbay.jetty.Handler'
 java_import 'org.mortbay.jetty.NCSARequestLog'

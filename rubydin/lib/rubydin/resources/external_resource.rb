@@ -20,7 +20,7 @@ limitations under the License.
 
 module Rubydin
 
-	class ExternalResource < Java::com.vaadin.terminal.ExternalResource
+	class ExternalResource < com.vaadin.terminal.ExternalResource
 
 		def initialize url
 			super
