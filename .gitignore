@@ -1,5 +1,9 @@
 .idea/workspace.xml
 .idea/tasks.xml
+<<<<<<< HEAD
+=======
+atlassian-ide-plugin.xml
+>>>>>>> 9d714f26687a0f2a752c2fea100092bb67fc20c1
 rubydin/build
 rubydin/*.gem
 rubydin-optional/*/*.gem

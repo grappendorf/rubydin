@@ -118,6 +118,7 @@ module Rubydin
 		def immediate= immediate
 			self.setImmediate immediate
 		end
+
 	end
 
 end
