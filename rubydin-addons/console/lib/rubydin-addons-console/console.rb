@@ -22,16 +22,52 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class Console < Java::org.vaadin.console.Console
+	class Console < org.vaadin.console.Console
 
 		include AbstractComponent
 
 		class Handler
-			
-			include Java::org.vaadin.console.Console::Handler
-						
+
+			include org.vaadin.console.Console::Handler
+
+			#noinspection RubyUnusedLocalVariable
+			def getSuggestions(console, last_input)
+				[]
+			end
+
+			#noinspection RubyUnusedLocalVariable
+			def commandNotFound(console, argv)
+			end
+
+			#noinspection RubyUnusedLocalVariable
+			def inputReceived(console, last_input)
+			end
+
+			#noinspection RubyUnusedLocalVariable
+			def handleException(console, e, cmd, argv)
+			end
+
 		end
 
+		def ps= ps
+			self.setPs ps
+		end
+
+		def cols= cols
+			self.setCols cols
+		end
+
+		def rows= rows
+			self.setRows rows
+		end
+
+		def max_buffer_size= lines
+			self.setMaxBufferSize lines
+		end
+
+		def greeting= greeting
+			self.setGreeting greeting
+		end
 	end
 
 end

@@ -18,7 +18,7 @@ limitations under the License.
 
 =end
 
-require 'java/vaadin-6.8.0.jar'
+require 'java/vaadin-6.8.6.jar'
 require 'java/gwt-dev-2.4.0.jar'
 require 'java/gwt-user-2.4.0.jar'
 require 'java/validation-api-1.0.0.GA.jar'
@@ -30,16 +30,16 @@ module Rubydin
 
 		def self.create widgetset = 'widgetset', widgetset_path = 'config', overwrite = true
 			$CLASSPATH << File.expand_path(widgetset_path)
-			classpath = $CLASSPATH.join File::PATH_SEPARATOR
-			FileUtils.rm_rf File.expand_path("#{widgetset}.gwt.xml", widgetset_path) 
+			classpath = $CLASSPATH.to_a.join File::PATH_SEPARATOR
+			FileUtils.rm_rf File.expand_path("#{widgetset}.gwt.xml", widgetset_path)
 			shell "java -classpath #{classpath} com.vaadin.terminal.gwt.widgetsetutils.WidgetSetBuilder #{widgetset}"
-			
+
 		end
-		
+
 		def self.compile widgetset = 'widgetset', widgetset_path = 'config', output_path = 'build/VAADIN/widgetsets'
 			FileUtils.mkdir_p output_path
 			$CLASSPATH << File.expand_path(widgetset_path)
-			classpath = $CLASSPATH.join File::PATH_SEPARATOR
+			classpath = $CLASSPATH.to_a.join File::PATH_SEPARATOR
 			shell "java -classpath #{classpath} com.google.gwt.dev.Compiler -war #{output_path} #{widgetset}"
 		end
 

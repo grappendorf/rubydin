@@ -22,7 +22,7 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class DateField < Java::com.vaadin.ui.DateField
+	class DateField < com.vaadin.ui.DateField
 
 		include AbstractComponent
 

@@ -24,7 +24,7 @@ require 'rubydin/ui/abstract_layout'
 
 module Rubydin
 
-	class HorizontalSplitPanel < Java::com.vaadin.ui.HorizontalSplitPanel
+	class HorizontalSplitPanel < com.vaadin.ui.HorizontalSplitPanel
 
 		include AbstractComponent
 		include AbstractContainer

@@ -23,7 +23,7 @@ require 'rubydin/ui/abstract_container'
 
 module Rubydin
 
-	class Panel < Java::com.vaadin.ui.Panel
+	class Panel < com.vaadin.ui.Panel
 
 		include AbstractComponent
 		include AbstractContainer

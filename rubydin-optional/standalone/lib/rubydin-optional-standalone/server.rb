@@ -118,6 +118,7 @@ module Rubydin
 			handlers.handlers = [handler1_context, handler2_context, servlet_context]
 			server.handler = handlers
 			server.start
+			server
 		end
 
 	end

@@ -20,7 +20,7 @@ limitations under the License.
 
 module Rubydin
 
-	class ThemeResource < Java::com.vaadin.terminal.ThemeResource
+	class ThemeResource < com.vaadin.terminal.ThemeResource
 
 		def initialize resource_id
 			super

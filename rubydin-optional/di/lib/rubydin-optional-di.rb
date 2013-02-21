@@ -18,6 +18,8 @@ limitations under the License.
 
 =end
 
+$dont_create_micon_shortcut = true
+
 require 'micon'
 require 'micon/setup'
 require 'rubydin-optional-di/dependency_injection.rb'

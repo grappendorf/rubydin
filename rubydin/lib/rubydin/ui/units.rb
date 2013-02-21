@@ -22,15 +22,15 @@ module Rubydin
 
 	module Units
 
-		PIXELS = Java::com.vaadin.terminal.Sizeable::UNITS_PIXELS
-		POINTS = Java::com.vaadin.terminal.Sizeable::UNITS_POINTS
-		PICAS = Java::com.vaadin.terminal.Sizeable::UNITS_PICAS
-		EM = Java::com.vaadin.terminal.Sizeable::UNITS_EM
-		EX = Java::com.vaadin.terminal.Sizeable::UNITS_EX
-		MM = Java::com.vaadin.terminal.Sizeable::UNITS_MM
-		CM = Java::com.vaadin.terminal.Sizeable::UNITS_CM
-		INCH = Java::com.vaadin.terminal.Sizeable::UNITS_INCH
-		PERCENTAGE = Java::com.vaadin.terminal.Sizeable::UNITS_PERCENTAGE
+		PIXELS = com.vaadin.terminal.Sizeable::UNITS_PIXELS
+		POINTS = com.vaadin.terminal.Sizeable::UNITS_POINTS
+		PICAS = com.vaadin.terminal.Sizeable::UNITS_PICAS
+		EM = com.vaadin.terminal.Sizeable::UNITS_EM
+		EX = com.vaadin.terminal.Sizeable::UNITS_EX
+		MM = com.vaadin.terminal.Sizeable::UNITS_MM
+		CM = com.vaadin.terminal.Sizeable::UNITS_CM
+		INCH = com.vaadin.terminal.Sizeable::UNITS_INCH
+		PERCENTAGE = com.vaadin.terminal.Sizeable::UNITS_PERCENTAGE
 
 	end
 

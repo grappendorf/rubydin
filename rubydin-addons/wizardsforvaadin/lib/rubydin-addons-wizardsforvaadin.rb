@@ -18,9 +18,9 @@ limitations under the License.
 
 =end
 
-require 'java'
-require 'java/wizards-for-vaadin-0.4.4.jar'
+require 'java/wizards-for-vaadin-0.4.5.jar'
 require 'rubydin-addons-wizardsforvaadin/version'
 require 'rubydin-addons-wizardsforvaadin/wizardsforvaadin'
+require 'i18n'
 
 I18n.load_path << Dir[File.join File.dirname(__FILE__), 'rubydin-addons-wizardsforvaadin/locales/*.{rb,yml}']

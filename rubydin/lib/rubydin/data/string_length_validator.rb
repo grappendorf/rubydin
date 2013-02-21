@@ -20,7 +20,7 @@ limitations under the License.
 
 module Rubydin
 
-	class StringLengthValidator < Java::com.vaadin.data.validator.StringLengthValidator
+	class StringLengthValidator < com.vaadin.data.validator.StringLengthValidator
 
 		def initialize error_message, min_length, max_length
 			super error_message, min_length, max_length, true

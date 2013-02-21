@@ -20,6 +20,6 @@ limitations under the License.
 
 module Rubydin
 
-	VERSION_WIZARDSFORVAADIN = '0.4.4.1'
+	VERSION_WIZARDSFORVAADIN = '0.4.5.1'
 
 end

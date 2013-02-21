@@ -22,13 +22,13 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class Table < Java::com.vaadin.ui.Table
+	class Table < com.vaadin.ui.Table
 
 		include AbstractComponent
 
 		class BlockColumnGenerator
 
-			include Java::com.vaadin.ui.Table::ColumnGenerator
+			include com.vaadin.ui.Table::ColumnGenerator
 
 			def initialize generator
 				@generator = generator
@@ -40,26 +40,26 @@ module Rubydin
 		end
 
 		def visible_columns columns
-			setVisibleColumns columns.map(&:to_s)
+			self.setVisibleColumns columns.map(&:to_s)
 		end
 
 		def column_expand_ratio column, ratio
-			setColumnExpandRatio column.to_s, ratio
+			self.setColumnExpandRatio column.to_s, ratio
 		end
 
 		def column_width column, width
-			setColumnWidth column, width
+			self.setColumnWidth column, width
 		end
-		
+
 		def column_header column, header
-			setColumnHeader column.to_s, header
+			self.setColumnHeader column.to_s, header
 		end
 
 		def container_property property_id, type, default_value = nil
 			if type == String
-				java_class = Java::java.lang.String.java_class
+				java_class = java.lang.String.java_class
 			elsif type == Component
-				java_class = Java::com.vaadin.ui.Component.java_class
+				java_class = com.vaadin.ui.Component.java_class
 			else
 				java_class = type.superclass.java_class
 			end
@@ -70,47 +70,54 @@ module Rubydin
 			addItem cells.to_java, item_id
 		end
 
-		alias item getItem
+		def editable?
+			self.isEditable
+		end
 
-		alias editable? isEditable
-		
 		def generated_column column_id, &block
-			addGeneratedColumn column_id.to_s, BlockColumnGenerator.new(block)
+			self.addGeneratedColumn column_id.to_s, BlockColumnGenerator.new(block)
 		end
 
 		def when_item_clicked &block
-			addListener ItemClickListener.new block
+			self.addListener ItemClickListener.new block
 		end
 
 		alias when_row_clicked when_item_clicked
-		
+
 		def when_selection_changed &block
-			addListener ValueChangeListener.new block
+			self.addListener ValueChangeListener.new block
 		end
 
 		def each_item
-			itemIds.each do |id|
+			self.itemIds.each do |id|
 				yield IndexedContainerItemWrapper.new(self.item id)
 			end
 		end
-		
+
 		def item item_id
 			ItemWrapper.new(getItem item_id)
 		end
-		
+
 		def self.boolean_image_column true_image = ThemeResource.new('icons/16/check.png'), false_image = nil
 			proc do |source, item_id, column_id|
 				property = source.item(item_id).property(column_id)
 				if source.editable?
 					checkbox = CheckBox.new
 					checkbox.property_data_source = property
-					checkbox					
+					checkbox
 				else
 					Embedded.new(property.value ? true_image : false_image)
 				end
 			end
 		end
-		
+
+		def selectable= selectable
+			self.setSelectable selectable
+		end
+
+		def immediate= immediate
+			self.setImmediate immediate
+		end
 	end
 
 end

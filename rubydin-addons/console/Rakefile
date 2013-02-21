@@ -1,10 +1,10 @@
 require 'rake'
 require 'rake/clean'
-require 'lib/rubydin-addons-console/version'
+require 'rubygems'
+require 'rubygems/gem_runner'
+require 'geminabox_client'
 
-name = 'Rubydin Addons Console'
-file = 'rubydin-addons-console'
-version = Rubydin::VERSION_CONSOLE
+spec = eval(File.read(Dir['*.gemspec'][0]))
 
 CLOBBER.include '*.gem'
 
@@ -13,22 +13,23 @@ task :default => :build
 task :build => :gem
 
 task :gem do
-	puts in_green "Create #{name} Gem"
-	shell "jruby -S gem build #{file}.gemspec"
+	puts in_green "Create #{spec.summary} Gem"
+	Gem::GemRunner.new.run ['build', "#{spec.name}.gemspec"]
 end
 
 task :install => :gem do
-	puts in_green "Install #{name} Gem"
-	shell "sudo jruby -S gem install #{file}-#{version}.gem"
+	puts in_green "Install #{spec.summary} Gem"
+	Gem::GemRunner.new.run ['install', "#{spec.name}-#{spec.version}.gem", '--local']
 end
 
 task :uninstall do
-	puts in_green "Uninstalling #{name} Gem"
-	shell "sudo jruby -S gem uninstall #{file}"
+	puts in_green "Uninstalling #{spec.summary} Gem"
+	Gem::GemRunner.new.run ['uninstall', "#{spec.name}"]
 end
 
-def shell cmd
-	IO.popen("#{cmd} 2>&1", 'r') {|out| out.each {|line| puts "  #{line}"}}
+task :release => :build do
+	puts in_green "Uploading #{spec.summary} Gem to Local Repository"
+	GeminaboxClient.new(ENV['GEM_REPOSITORY']).push "#{spec.name}-#{spec.version}.gem"
 end
 
 def in_green txt

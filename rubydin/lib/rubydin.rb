@@ -19,14 +19,13 @@ limitations under the License.
 =end
 
 require 'rubygems'
-require 'java'
-require 'java/vaadin-6.8.0.jar'
+require 'java/vaadin-6.8.6.jar'
 require 'java/gwt-dev-2.4.0.jar'
 require 'java/gwt-user-2.4.0.jar'
 require 'java/validation-api-1.0.0.GA.jar'
 require 'java/validation-api-1.0.0.GA-sources.jar'
 require 'java/javax.servlet-api-3.0.1.jar'
-require 'java/rubydin-6.8.0.1.jar'
+require 'java/rubydin-6.8.6.1.jar'
 require 'logging'
 require 'renum'
 require 'i18n'
@@ -37,6 +36,7 @@ require 'rubydin/util/decorator'
 
 module Rubydin
 	autoload :Application, 'rubydin/base/application'
+	autoload :ObjectSpaceTools, 'rubydin/util/objectspacetools'
 	autoload :ExternalResource, 'rubydin/resources/external_resource'
 	autoload :StreamResource, 'rubydin/resources/stream_resource'
 	autoload :ThemeResource, 'rubydin/resources/theme_resource'

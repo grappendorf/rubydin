@@ -18,7 +18,6 @@ limitations under the License.
 
 =end
 
-require 'java'
 require 'java/console-1.1.6.jar'
 require 'java/widget-rpc-1.1.5.jar'
 require 'rubydin-addons-console/version'

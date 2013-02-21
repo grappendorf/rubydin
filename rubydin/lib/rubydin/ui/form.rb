@@ -22,14 +22,17 @@ module Rubydin
 
 	class FormFieldFactory
 
-		include Java::com.vaadin.ui.FormFieldFactory
+		include com.vaadin.ui.FormFieldFactory
 
 		def create_caption property_id, model_id = :_
 			begin
-				T! property_id, scope: [:domain, :attributes, model_id] 				
+				T! property_id, scope: [:domain, :attributes, model_id]
 			rescue
-				Java::com.vaadin.ui.DefaultFieldFactory::createCaptionByPropertyId property_id.to_s.gsub(/_(.)/) {|w| w[1].upcase}
+				com.vaadin.ui.DefaultFieldFactory::createCaptionByPropertyId property_id.to_s.gsub(/_(.)/) {|w| w[1].upcase}
 			end
+		end
+
+		def createField(item, property_id, ui_context)
 		end
 
 	end
@@ -77,30 +80,33 @@ module Rubydin
 
 	end
 
-	class Form < Java::com.vaadin.ui.Form
+	class Form < com.vaadin.ui.Form
 
 		@@standard_form_field_factory = StandardFormFieldFactory.new
 
 		def initialize caption = nil
 			super()
-			set_write_through false
-			set_form_field_factory @@standard_form_field_factory
-			set_caption caption
+			self.setWriteThrough false
+			self.setFormFieldFactory @@standard_form_field_factory
+			self.setCaption caption
 		end
 
 		def item_data_source= item
-			set_item_data_source(*item)
+			self.setItemDataSource *item
 		end
 
 		def commit!
 			begin
 				commit
 				true
-			rescue Java::com.vaadin.data.Validator::InvalidValueException
+			rescue com.vaadin.data.Validator::InvalidValueException
 			false
 			end
 		end
 
+		def form_field_factory= field_fctory
+			self.setFormFieldFactory field_fctory
+		end
 	end
 
 end

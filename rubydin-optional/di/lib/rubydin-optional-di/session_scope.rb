@@ -25,37 +25,42 @@ module Rubydin
 		def initialize
 			@sessions = {}
 		end
-	
+
 		def session session_id
-			@sessions[session_id] || @sessions[session_id] = {}
-		end	
-		
-		def [] key
-			value = session(Thread.current[:rubydin_session_id])[key]
+			@sessions[session_id] ||= {}
 		end
-	
+
+		def [] key
+			session(Thread.current[:rubydin_session_id])[key]
+		end
+
 		def []= key, value
 			session(Thread.current[:rubydin_session_id])[key] = value
 		end
-		
+
 		def clear_session session_id
-			@sessions.delete session_id	
+			@sessions.delete session_id
 		end
-		
+
 		def clear
 			@sessions.clear
 		end
-		
+
 		def to_s
 			@sessions.to_s
 		end
-		
+
 		def inspect
 			@sessions.inspect
 		end
 
 	end
-	
+
 end
 
 ::MICON.activate :session, Rubydin::SessionScope.new
+
+Rubydin::Application.global_when_closed do
+	puts '*********************'
+	::MICON.custom_scopes[:session].clear_session Thread.current[:rubydin_session_id]
+end

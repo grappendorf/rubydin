@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="JRUBY" name="JRuby">
       <configuration>
-        <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="jruby-1.6.7.2-p312" />
+        <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="" />
         <LOAD_PATH number="1" string0="$MODULE_DIR$/rubydin/lib" />
         <I18N_FOLDERS number="1" string0="$MODULE_DIR$/rubydin/lib/rubydin/locales" />
       </configuration>
@@ -13,10 +13,12 @@
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="RVM: jruby-1.7.2 [global]" jdkType="JRUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="jruby-1.6.7.2-p312 facet library" level="application" />
-    <orderEntry type="library" name="vaadin-6.8.0" level="project" />
+    <orderEntry type="library" name="console-1.1.6" level="project" />
+    <orderEntry type="library" name="vaadin-6.8.6" level="project" />
     <orderEntry type="library" name="gwt-dev-2.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="RVM: jruby-1.7.2 facet library" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

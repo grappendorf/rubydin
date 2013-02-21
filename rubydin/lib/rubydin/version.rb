@@ -19,7 +19,7 @@ limitations under the License.
 =end
 
 module Rubydin
-	
-  VERSION = "6.8.0.1"
-  
+
+  VERSION = "6.8.6.1"
+
 end

@@ -18,5 +18,4 @@ limitations under the License.
 
 =end
 
-require 'java'
 require 'rubydin-optional-standalone/server.rb'

@@ -22,7 +22,7 @@ require 'rubydin/ui/abstract_component'
 
 module Rubydin
 
-	class Slider < Java::com.vaadin.ui.Slider
+	class Slider < com.vaadin.ui.Slider
 
 		include AbstractComponent
 
@@ -31,7 +31,7 @@ module Rubydin
 		end
 
 		def when_value_changed &block
-			addListener ValueChangeListener.new block
+			self.addListener ValueChangeListener.new block
 		end
 
 	end
