@@ -44,6 +44,7 @@ module Rubydin
 		def spacing= enabled
 			setSpacing enabled
 		end
+
 	end
 
 end

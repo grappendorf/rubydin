@@ -6,6 +6,7 @@ require 'geminabox_client'
 
 spec = eval(File.read(Dir['*.gemspec'][0]))
 
+SUDO = (ENV['sudo'] =~ /(true|t|yes|y|1)$/i) && 'sudo' || ''
 BUILD_DIR = 'build'
 CLASSES_DIR = 'build/classes'
 

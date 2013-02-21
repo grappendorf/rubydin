@@ -6,7 +6,7 @@ desc 'Build and install all Rubydin Gems'
 task :install do
 	(rubydin_dir + optional_dirs + addon_dirs).each do |dir|
 		cd dir
-		system 'rake install'
+		system "rake install sudo=#{ENV['sudo']}"
 	end
 end
 
@@ -14,7 +14,7 @@ desc 'Uninstall all Rubydin Gems'
 task :uninstall do
 	(optional_dirs + addon_dirs + rubydin_dir).each do |dir|
 		cd dir
-		system 'rake uninstall'
+		system "rake uninstall sudo=#{ENV['sudo']}"
 	end
 end
 
