@@ -34,8 +34,8 @@ module Rubydin
 			super
 		end
 
-		def add_at component, column, row, column2 = nil, row2 = nil
-			self.addComponent component, column, row, column2, row2
+		def add_at component, column, row
+			self.addComponent component, column, row, column, row
 		end
 
 		def add_from_to component, column1, row1, column2, row2

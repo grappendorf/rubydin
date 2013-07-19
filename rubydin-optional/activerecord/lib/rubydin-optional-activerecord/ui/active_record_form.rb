@@ -20,39 +20,50 @@ limitations under the License.
 
 module Rubydin
 
-	class DataMapperFormFieldFactory < FormFieldFactory
+	class ActiveRecordFormFieldFactory < FormFieldFactory
 
 		def createField item, property_id, ui_context
 			create_field item, property_id, ui_context
 		end
 
 		def create_field item, property_id, ui_context
-			create_field_for_string property_id
+			caption = create_caption property_id
 			type = item.data.column_for_attribute(property_id).type
 			field = case type
-				when :text
-					create_field_for_text property_id
-				when :string
-					create_field_for_string property_id
-				when :boolean
-					create_field_for_boolean property_id
+						when :text
+							create_field_for_text property_id, caption
+						when :string
+							create_field_for_string property_id, caption
+						when :boolean
+							create_field_for_boolean property_id, caption
+						when :integer
+							create_field_for_integer property_id, caption
+					end
+			field
+		end
+
+		def create_field_for_string property_id, caption
+			TextField.new(caption).tap do |f|
+				f.null_representation = ''
 			end
 		end
 
-		def create_field_for_string property_id
-			TextField.new create_caption property_id
-		end
-
-		def create_field_for_text property_id
-			TextArea.new(create_caption property_id).tap do |f|
+		def create_field_for_text property_id, caption
+			TextArea.new(caption).tap do |f|
 				f.columns = 40
 			end
 		end
-		
-		def create_field_for_boolean property_id
-			CheckBox.new create_caption property_id
+
+		def create_field_for_boolean property_id, caption
+			CheckBox.new caption
+		end
+
+		def create_field_for_integer property_id, caption
+			TextField.new(caption).tap do |f|
+				f.null_representation = ''
+			end
 		end
 
 	end
-	
+
 end

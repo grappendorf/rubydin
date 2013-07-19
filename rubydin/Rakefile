@@ -46,7 +46,8 @@ end
 
 task :release => :build do
 	puts in_green "Uploading #{spec.summary} Gem to Local Repository"
-	GeminaboxClient.new(ENV['GEM_REPOSITORY']).push "#{spec.name}-#{spec.version}.gem"
+	rake_config = YAML::load(File.read("#{ENV['HOME']}/.rake/rake.yml")) rescue {}
+	GeminaboxClient.new(rake_config['geminabox']['url']).push "#{spec.name}-#{spec.version}.gem"
 end
 
 def shell cmd
