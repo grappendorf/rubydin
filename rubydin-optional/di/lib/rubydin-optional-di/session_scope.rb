@@ -61,6 +61,5 @@ end
 ::MICON.activate :session, Rubydin::SessionScope.new
 
 Rubydin::Application.global_when_closed do
-	puts '*********************'
 	::MICON.custom_scopes[:session].clear_session Thread.current[:rubydin_session_id]
 end
