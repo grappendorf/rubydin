@@ -5,7 +5,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="2CBED64F4A064DD83DF8FE616D77D750" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="RVM: jruby-1.7.4" project-jdk-type="JRUBY_SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />

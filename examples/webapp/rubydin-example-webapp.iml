@@ -30,11 +30,10 @@
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="RVM: jruby-1.7.2" jdkType="JRUBY_SDK" />
+    <orderEntry type="jdk" jdkName="RVM: jruby-1.7.4 [rubydin]" jdkType="JRUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="vaadin-6.8.6" level="project" />
     <orderEntry type="library" name="gwt-dev-2.4.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="RVM: jruby-1.7.2 facet library" level="application" />
   </component>
 </module>
 
