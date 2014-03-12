@@ -4,4 +4,4 @@ You are allowed to:
 1. Remove rake task
 2. Add existing rake tasks
 To add existing rake tasks automatically delete this file and reload the project.
---><RakeGroup description="" fullCmd="" taksId="rake"><RakeTask description="Delete all build artifacts" fullCmd="clobber" taksId="clobber" /><RakeTask description="Build and install all Rubydin gems" fullCmd="install" taksId="install" /><RakeTask description="Uninstall install all Rubydin gems" fullCmd="uninstall" taksId="uninstall" /></RakeGroup></Settings>
+--><RakeGroup description="" fullCmd="" taksId="rake" /></Settings>
